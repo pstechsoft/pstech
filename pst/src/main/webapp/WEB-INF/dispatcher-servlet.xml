@@ -12,6 +12,7 @@
    ">
 	<!-- Activate Annotated Classes -->
 	<context:component-scan base-package="com.arn.pst.controller" />
+	<context:component-scan base-package="com.arn.pstechbackend.daoimpl" />
 
 	<!-- Activate view Resolver -->
 	<bean id="viewResolver"

@@ -13,6 +13,13 @@
 	</properties>
 	<dependencies>
 
+		<!-- Linking Backend -->
+		<dependency>
+			<groupId>com.arn</groupId>
+			<artifactId>pstechbackend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<!-- JAVA EE API -->
 		<dependency>
 			<groupId>javax</groupId>
