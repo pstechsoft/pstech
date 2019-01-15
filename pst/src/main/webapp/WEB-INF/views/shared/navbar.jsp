@@ -15,7 +15,7 @@
 			<div class="col-md-2" id="cart">
 				<a href="${contextRoot}/cart" class="cart text-light"><i
 					class="fa fa-cart-plus" aria-hidden="true"></i> My Cart - <i
-					class="fa fa-inr"></i> 0.00</a>
+					class="fa fa-inr fa-sm" aria-hidden="true"></i> 0.00</a>
 			</div>
 		</div>
 	</div>
@@ -53,11 +53,11 @@
 				</span>
 			</div>
 
-			<ul class="navbar-nav navbar-expand-md pl-2 pr-3">
+			<ul class="navbar-nav navbar-expand-md pl-3 pr-3">
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto text-nowrap">
 						<li class="nav-item my-1 active"><a class="nav-link"
-							href="${contextRoot}/home">Home <span class="sr-only">(current)</span></a></li>
+							href="${contextRoot}/home"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a></li>
 						<li class="nav-item dropdown my-1"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -65,9 +65,10 @@
 								aria-hidden="true"></i> Categories
 						</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<c:forEach items="${categories}" var="category">
-								<a class="dropdown-item"  id="categoryProducts" href="${contextRoot}/show/category/${category.id}/products">${category.name}</a>
-								<div class="dropdown-divider"></div>
+								<c:forEach items="${categories}" var="category">
+									<a class="dropdown-item" id="categoryProducts"
+										href="${contextRoot}/show/category/${category.id}/products">${category.name}</a>
+									<div class="dropdown-divider"></div>
 								</c:forEach>
 							</div></li>
 						<li class="nav-item my-1" id="myaccount"><a
@@ -84,31 +85,27 @@
 
 
 <!-- Third Nevigation -->
-<div class="container-fluid bg-gold header-top d-md-block">
+<%-- <div class="container-fluid bg-gold header-top d-md-block">
 	<div class="container-fluid">
 		<div class="row pt-2 pb-2">
-		<c:forEach items="${categories}" var="category">
-			<a class="col-md-1 text-light" href="${contextRoot}/show/category/${category.id}/products" id="a_${category.name}">${category.name}</a>
+			<c:forEach items="${categories}" var="category">
+				<a class="col-md-1 text-light"
+					href="${contextRoot}/show/category/${category.id}/products"
+					id="a_${category.name}">${category.name}</a>
 			</c:forEach>
 			<div class="col-md-8"></div>
 		</div>
 	</div>
+</div> --%>
+
+<div class="navigation-bar">
+	<div id="navigation-container">
+		<ul>
+			<c:forEach items="${categories}" var="category">
+				<li class="active"><a href="${contextRoot}/show/category/${category.id}/products"
+					id="a_${category.name}">${category.name}</a></li>
+			</c:forEach>
+		</ul>
+	</div>
 </div>
- <!-- Nav pills -->
-<!--     <div class="container-fluid bg-gold header-top d-md-block">
-    <ul class="nav nav-pills">
-            <li class="nav-item">
-              <a class="nav-link text-light active" data-toggle="pill" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" data-toggle="pill" href="#menu1">Menu 1</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-light" data-toggle="pill" href="#menu2">Menu 2</a>
-            </li>
-          </ul>
-        </div> -->
-
- 
-
 

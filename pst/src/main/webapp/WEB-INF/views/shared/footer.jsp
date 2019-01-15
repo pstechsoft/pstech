@@ -79,12 +79,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="container-fluid footer bg-info text-light pt-3 pb-2">
-			<div class="row">
-				<div class="col-lg-12">
+		<div class="container-fluid footer bg-info text-light pt-1">
 					<p>Copyright &copy; Ps Tech 2019 - Designed and Developed by
 						www.pstech.co.in</p>
 				</div>
-			</div>
-		</div>
 	</footer>

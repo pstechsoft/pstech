@@ -1,6 +1,12 @@
 
 @import url('https://fonts.googleapis.com/css?family=Lato|Pacifico|Righteous|Roboto+Condensed|Ubuntu|Shrikhand');
+/* * { border: 1px solid red; } */
 body{
+	width:100%;
+	height:100%;
+	margin:0px;
+	padding:0px;
+	overflow-x:hidden;
     font-family: 'Lato';
 }
 .carousel-caption{
@@ -33,14 +39,12 @@ h2::after {
 	right: 0;
 	bottom: -20px;
 }
-/* .carousel1{
-	margin: 0px auto;
-	padding: 0 70px;
-}*/
+
 .carousel {
 	margin: 0px auto;
-	padding: 0px 140px;
+	padding: 0 70px;
 }
+
 .carousel .item {
 	min-height: 330px;
     text-align: center;
@@ -62,7 +66,7 @@ h2::after {
 	right: 0;
 }
 .carousel .item h4 {
-	font-size: 18px;
+	font-size: 17px;
 	margin: 10px 0;
 }
 .carousel .item .btn {
@@ -132,7 +136,7 @@ h2::after {
 .carousel .carousel-control.left i {
 	margin-right: -3px;
 }
-/*.carousel .carousel-indicators {
+/* .carousel .carousel-indicators {
 	bottom: -50px;
 } */
 .carousel-indicators li, .carousel-indicators li.active{
@@ -211,6 +215,44 @@ h2::after {
 .underline-blue{width: 70px; height: 2px; background-color: mediumblue;}
 .underline-black{width: 70px; height: 2px; background-color: black;}
 
-.footer{
-	text-align:center;
+.footer {
+  position: fixed;
+  text-align:center;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 36px;
 }
+
+*{
+	margin: 0px;
+	padding: 0px;
+  }
+  
+  .navigation-bar {
+	height: 36px;
+	background:goldenrod;
+
+  }
+  
+  .navigation-bar ul {
+	display: inline-block;
+	list-style-type: none;
+  }
+  
+  .navigation-bar li {
+	display: inline;
+  }
+  
+  .navigation-bar li a {
+	color:white;
+	padding: 0px 30px;
+	margin: 0.4em 0 0 -2px;
+	text-decoration: none;
+	float: left;
+  }
+  
+  .navigation-bar li a:hover,
+  a:focus {
+	color:#00E8E8;
+  }
