@@ -1,8 +1,7 @@
 <footer>
 		<div class="container-fluid pt-5 pb-5 bg-dark text-light">
-			<div class="container">
+			<div class="container-fluid">
 				<div class="row">
-
 					<div class="col-md-3">
 						<div class="row">
 							<h5>Recent Posts</h5>

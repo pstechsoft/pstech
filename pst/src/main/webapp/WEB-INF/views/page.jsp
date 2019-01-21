@@ -16,16 +16,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>PS TECH - ${title}</title>
 <link rel="icon" type="image/png" href="${images}/PS Logo2.png" />
 
 <script>
 	window.menu = '${title}';
+	window.contextRoot = '${contextRoot}'
 </script>
 
+<!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="${css}/bootstrap.min.css">
 <link rel="stylesheet" href="${css}/bootstrap.css">
+
+<!-- Bootstrap dataTable CSS -->
+<link href="${css}/dataTables.bootstrap4.css" rel="stylesheet">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
@@ -46,9 +53,12 @@
 			file="cart.jsp"%>
 	</c:if>
 
-	<c:if test="${userClickCategoryProducts == true }"><%@include
-			file="listproduct.jsp"%>
+	<!-- Loads only when user clicks All Products -->
+	<c:if
+		test="${userClickAllProducts==true or userClickCategoryProducts==true}">
+		<%@include file="listproduct.jsp"%>
 	</c:if>
+
 	<c:if test="${userClickMyAccount == true }"><%@include
 			file="myaccount.jsp"%>
 	</c:if>
@@ -63,6 +73,10 @@
 	<c:if test="${userClickAbout == true }"><%@include
 			file="about.jsp"%>
 	</c:if>
+	<!-- Single product page -->
+	<c:if test="${userClickShowProduct == true }"><%@include
+			file="singleProduct.jsp"%>
+	</c:if>
 
 	<!-- Footer -->
 	<%@include file="./shared/footer.jsp"%>
@@ -76,11 +90,12 @@
 
 	<!-- Bootstrap Core -->
 	<script src="${js}/bootstrap.min.js"></script>
+	<!-- Data Table -->
+	<script src="${js}/jquery.dataTables.js"></script>
+	<script src="${js}/dataTables.bootstrap4.js"></script>
 
 	<!-- self coded js -->
 	<script src="${js}/myapp.js"></script>
-
-
 
 
 </body>
