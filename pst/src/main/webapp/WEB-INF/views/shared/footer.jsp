@@ -1,6 +1,6 @@
 <footer>
 		<div class="container-fluid pt-5 pb-5 bg-dark text-light">
-			<div class="container-fluid">
+			<div class="container-fluid pl-5 pr-5">
 				<div class="row">
 					<div class="col-md-3">
 						<div class="row">

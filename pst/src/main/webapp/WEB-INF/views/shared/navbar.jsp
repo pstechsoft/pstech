@@ -56,9 +56,10 @@
 			<ul class="navbar-nav navbar-expand-md pl-3 pr-3">
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto text-nowrap">
-						<li class="nav-item my-1 active" id="home"><a class="nav-link"
-							href="${contextRoot}/home"><i class="fa fa-home fa-fw"
-								aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a></li>
+						<li class="nav-item my-1 active" id="home"><a
+							class="nav-link" href="${contextRoot}/home"><i
+								class="fa fa-home fa-fw" aria-hidden="true"></i> Home <span
+								class="sr-only">(current)</span></a></li>
 						<li class="nav-item dropdown my-1"><a
 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -73,9 +74,11 @@
 								</c:forEach>
 							</div></li>
 						<li class="nav-item my-1" id="listProducts"><a
-							href="${contextRoot}/show/all/products"
-							class="nav-link"><i
+							href="${contextRoot}/show/all/products" class="nav-link"><i
 								class="fab fa-product-hunt"></i> View Products</a></li>
+						<li class="nav-item my-1" id="manageProducts"><a
+							href="${contextRoot}/manage/products" class="nav-link"><i
+								class="fas fa-unlock-alt"></i> Manage Products</a></li>
 						<li class="nav-item my-1" id="myaccount"><a
 							href="${contextRoot}/myaccount"
 							class="nav-link btn btn-outline-secondary"><i

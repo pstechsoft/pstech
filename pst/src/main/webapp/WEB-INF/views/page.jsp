@@ -59,6 +59,11 @@
 		<%@include file="listproduct.jsp"%>
 	</c:if>
 
+	<!-- Loads only when user clicks Manage Products -->
+	<c:if test="${userClickManageProducts==true}">
+		<%@include file="manageProducts.jsp"%>
+	</c:if>
+
 	<c:if test="${userClickMyAccount == true }"><%@include
 			file="myaccount.jsp"%>
 	</c:if>

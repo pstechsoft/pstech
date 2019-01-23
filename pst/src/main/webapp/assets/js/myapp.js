@@ -1,17 +1,20 @@
 $(function() {
 	// solving the active menu problem
 	switch (menu) {
-	case 'View Products':
+	case 'category.getName':
+		$('#navbarDropdown').addClass('active');
+		break;
+	case 'All Products':
 		$('#listProducts').addClass('active');
+		break;
+	case 'Manage Products':
+		$('#manageProducts').addClass('active');
 		break;
 	case 'About Us':
 		$('#about').addClass('active');
 		break;
-	case 'My Account':
+	case 'My account':
 		$('#myaccount').addClass('active');
-		break;
-	case 'category.getName':
-		$('#categoryProducts').addClass('active');
 		break;
 	case 'My Cart':
 		$('#cart').addClass('active');
@@ -102,8 +105,19 @@ $(function() {
 									}
 									return str;
 								}
-							
+
 							} ]
 				});
 	}
+
+	// dismissing the alert after 3 second
+	var $alert = $('.alert');
+	if ($alert.length) {
+
+		setTimeout(function() {
+			$alert.fadeOut('slow');
+		}, 3000)
+
+	}
+
 });
