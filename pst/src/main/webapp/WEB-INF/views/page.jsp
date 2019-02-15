@@ -88,6 +88,9 @@
 
 	<!-- Jquery -->
 	<script src="${js}/jquery.js"></script>
+	
+	<!-- Jquery Validator-->
+	<script src="${js}/jquery.validate.js"></script>
 
 	<!-- Ajax core -->
 	<script
@@ -95,10 +98,16 @@
 
 	<!-- Bootstrap Core -->
 	<script src="${js}/bootstrap.min.js"></script>
+	
 	<!-- Data Table -->
 	<script src="${js}/jquery.dataTables.js"></script>
+	
+	<!-- Data Table Bootstrap Script-->
 	<script src="${js}/dataTables.bootstrap4.js"></script>
 
+	<!-- Bootbox-->
+	<script src="${js}/bootbox.min.js"></script>
+	
 	<!-- self coded js -->
 	<script src="${js}/myapp.js"></script>
 
