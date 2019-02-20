@@ -128,7 +128,7 @@
 			<hr />
 		</div>
 		<div class="col-lg-12">
-			<div style="overflow: auto">
+			<div class="table-responsive">
 				<!-- Products table for Admin -->
 				<table id="adminProductsTable"
 					class="table table-striped table-bordered">
@@ -175,8 +175,9 @@
 				</div>
 				<div class="modal-body">
 					<!-- Category Form -->
-					<sf:form id="categoryForm" class="form-horizontal" modelAttribute="category"
-						action="${contextRoot}/manage/category" method="POST">
+					<sf:form id="categoryForm" class="form-horizontal"
+						modelAttribute="category" action="${contextRoot}/manage/category"
+						method="POST">
 
 						<div class="form-group row">
 							<label for="category_name" class="form-control-label col-lg-4">Category

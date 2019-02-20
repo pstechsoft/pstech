@@ -252,13 +252,13 @@ h2::after {
 
 .media img {
 	max-width: 120px;
-	height: auto
+	height: auto;
 }
 
 .underline-green {
 	width: 70px;
 	height: 2px;
-	background-color: lawngreen
+	background-color: lawngreen;
 }
 
 .underline-blue {
@@ -377,4 +377,18 @@ input:checked+.slider:before {
 }
 .modal-header {
 	display: block;
+}
+/*Badge in cart*/
+.badge-notify{
+   background:red;
+   position:relative;
+   top: -15px;
+   right: 5px;
+}
+
+#productListTable{
+	overflow-x: inherit;
+}
+#adminProductsTable{
+	overflow-x: inherit;
 }

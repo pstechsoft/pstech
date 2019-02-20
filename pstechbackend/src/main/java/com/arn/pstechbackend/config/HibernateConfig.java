@@ -29,7 +29,7 @@ public class HibernateConfig {
 		return sessionFactoryBean;
 	}
 	
-	@Bean
+	@Bean("dataSource")
 	public DataSource datasource(){
 		DriverManagerDataSource ds = new DriverManagerDataSource();
 		ds.setDriverClassName("com.mysql.jdbc.Driver");
@@ -40,16 +40,17 @@ public class HibernateConfig {
 		return ds;
 	}
 	
+	//All the Hibernate Properties will be returned in this method
 	public Properties hibernateProperties(){
 		Properties properties = new Properties();
 		properties.put("hibernate.dialect","org.hibernate.dialect.MySQLDialect");
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");
-		
-		
+		properties.put("hibernate.hbm2ddl.auto", "update");
 		return properties;
 	}
 	
+	//transactionManager Bean
 	@Bean
 	@Autowired
 	public HibernateTransactionManager transactionManager(SessionFactory s){

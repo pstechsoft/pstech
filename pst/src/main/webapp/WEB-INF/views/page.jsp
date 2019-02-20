@@ -18,6 +18,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
+
 <title>PS TECH - ${title}</title>
 <link rel="icon" type="image/png" href="${images}/PS Logo2.png" />
 

@@ -1,3 +1,6 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <div class="container">
 	<!-- Breadcrumb -->
 	<div class="row">
@@ -46,23 +49,31 @@
 					<h6>Qty. Available: ${product.quantity}</h6>
 				</c:otherwise>
 			</c:choose>
+			<security:authorize access="hasAuthority('USER')">
+				<c:choose>
+					<c:when test="${product.quantity < 1}">
+						<a href="javascript:void(0)" class="btn btn-success disabled">
+							<strike> <span class="fa fa-cart-plus"></span>Add to
+								Cart
+						</strike>
+						</a>
+					</c:when>
 
-			<c:choose>
-				<c:when test="${product.quantity < 1}">
-					<a href="javascript:void(0)" class="btn btn-success disabled">
-						<strike> <span class="fa fa-cart-plus"></span>Add to
-							Cart
-					</strike>
-					</a>
-				</c:when>
-
-				<c:otherwise>
-					<a href="${contextRoot}/cart/add/${product.id}/product"
-						class="btn btn-success"> <span class="fa fa-cart-plus"></span>
-						Add to Cart
-					</a>
-				</c:otherwise>
-			</c:choose>
+					<c:otherwise>
+						<a href="${contextRoot}/cart/add/${product.id}/product"
+							class="btn btn-success"> <span class="fa fa-cart-plus"></span>
+							Add to Cart
+						</a>
+					</c:otherwise>
+				</c:choose>
+			</security:authorize>
+			
+			<security:authorize access="hasAuthority('ADMIN')">
+			<a href="${contextRoot}/manage/${product.id}/product"
+							class="btn btn-warning"> <span class="fas fa-pencil-alt"></span>
+							Edit
+						</a>
+			</security:authorize>
 
 			<a href="${contextRoot}/show/all/products" class="btn btn-primary">Back</a>
 		</div>

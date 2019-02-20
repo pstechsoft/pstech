@@ -1,5 +1,12 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
+	
+	<script>
+		window.userRole = '${userModel.role}';
+	</script>
+	
 <!-- Top Nevigation -->
-
 <div class="container-fluid bg-info header-top d-none d-md-block">
 	<div class="container-fluid">
 		<div class="row text-light pt-2 pb-2">
@@ -12,6 +19,20 @@
 				<a href="${contextRoot}/myaccount" class="account text-light"><i
 					class="fa fa-user" aria-hidden="true"></i> Login/Register</a>
 			</div>
+			<%-- <div class="col-md-3"></div>
+			<div class="col-md-2">
+				<li class="dropdown"><a href="javascript:void(0)"
+					class="btn btn-default dropdown-toggle" id="dropownMenu1"
+					data-toggle="dropdown"> Full Name <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="${contextRoot}/cart"> <span
+								class="fa fa-cart-plus"></span> <span class="fa fa-id-badge">
+									0 </span> - &#8377; 0.0
+						</a></li>
+						<li class="divider" role="separator"></li>
+						<li><a href="${contextRoot}/logout">Logout</a>
+					</ul></li>
+			</div> --%>
 			<div class="col-md-2" id="cart">
 				<a href="${contextRoot}/cart" class="cart text-light"><i
 					class="fa fa-cart-plus" aria-hidden="true"></i> My Cart - <i
@@ -76,17 +97,52 @@
 						<li class="nav-item my-1" id="listProducts"><a
 							href="${contextRoot}/show/all/products" class="nav-link"><i
 								class="fab fa-product-hunt"></i> View Products</a></li>
-						<li class="nav-item my-1" id="manageProducts"><a
-							href="${contextRoot}/manage/products" class="nav-link"><i
-								class="fas fa-unlock-alt"></i> Manage Products</a></li>
-						<li class="nav-item my-1" id="myaccount"><a
+						<security:authorize access="hasAuthority('ADMIN')">
+							<li class="nav-item my-1" id="manageProducts"><a
+								href="${contextRoot}/manage/products" class="nav-link"><i
+									class="fas fa-unlock-alt"></i> Manage Products</a></li>
+						</security:authorize>
+						<%-- <li class="nav-item my-1" id="myaccount"><a
 							href="${contextRoot}/myaccount"
 							class="nav-link btn btn-outline-secondary"><i
-								class="fa fa-user"></i> My account</a></li>
+								class="fa fa-user"></i> My account</a></li> --%>
+						<security:authorize access="isAnonymous()">
+							<li class="nav-item dropdown my-1"><a
+								class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+								role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> <i class="fa fa-user"
+									aria-hidden="true"></i> Login/Register
+							</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" id="register"
+										href="${contextRoot}/register">Sign Up</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" id="login" href="${contextRoot}/login">Login</a>
+								</div></li>
+						</security:authorize>
+						<security:authorize access="isAuthenticated()">
+							<li class="nav-item dropdown my-1"><a
+								class="nav-link btn btn-outline-secondary dropdown-toggle"
+								id="navbarDropdown" href="javascript:void(0)" role="button"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"><i class="fa fa-user"
+									aria-hidden="true"></i> ${userModel.fullName}</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<security:authorize access="hasAuthority('USER')">
+										<a class="dropdown-item" href="${contextRoot}/cart"> <span
+											class="fa fa-cart-plus"></span> <span
+											class="badge badge-notify">
+												${userModel.cart.cartLines} </span> &#8377;
+											${userModel.cart.grandTotal}
+										</a>
+										<div class="dropdown-divider" role="separator"></div>
+									</security:authorize>
+									<a class="dropdown-item" href="${contextRoot}/perform-logout">Logout</a>
+								</div></li>
+						</security:authorize>
 					</ul>
 				</div>
 			</ul>
-			<!--        </div>-->
 		</nav>
 	</div>
 </div>
