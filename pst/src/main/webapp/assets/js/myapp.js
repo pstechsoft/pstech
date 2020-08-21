@@ -16,9 +16,12 @@ $(function() {
 	case 'My account':
 		$('#myaccount').addClass('active');
 		break;
-	case 'My Cart':
-		$('#cart').addClass('active');
+	case 'Shopping Cart':
+		$('#shoppingCart').addClass('active');
 		break;
+	/*case 'My Cart':
+		$('#cart').addClass('active');
+		break;*/
 	default:
 		if (menu == "Home")
 			break;
@@ -39,6 +42,7 @@ $(function() {
 		});
 	}
 
+	
 	// code for jquery data table
 
 	var $table = $('#productListTable');
@@ -105,14 +109,14 @@ $(function() {
 											+ window.contextRoot
 											+ '/show/'
 											+ data
-											+ '/product" class="btn btn-primary"><span class="far fa-eye"></span></a> &#160';
+											+ '/product" class="btn btn-primary"><span class="fa fa-eye"></span></a> &#160';
 
 									if (userRole == 'ADMIN') {
 										str += '<a href="'
 												+ window.contextRoot
 												+ '/manage/'
 												+ data
-												+ '/product" class="btn btn-warning"><span class="fas fa-pencil-alt"></span></a>';
+												+ '/product" class="btn btn-warning"><span class="fa fa-pencil"></span></a>';
 									} else {
 
 										if (row.quantity < 1) {
@@ -160,6 +164,17 @@ $(function() {
 									message : dMsg,
 									callback : function(confirmed) {
 										if (confirmed) {
+											/*$.ajax({							            	
+								            	type: 'GET',
+								            	url: window.contextRoot + '/manage/product/'+checkbox.prop('value')+'/activation',
+								        		timeout : 100000,
+								        		success : function(data) {
+								        			bootbox.alert(data);							        										        			
+								        		},
+								        		error : function(e) {
+								        			bootbox.alert('ERROR: '+ e);
+								        			//display(e);
+								        		}						 */
 											console.log(value);
 											bootbox
 													.alert({
@@ -266,7 +281,7 @@ $(function() {
 											+ window.contextRoot
 											+ '/manage/'
 											+ data
-											+ '/product" class="btn btn-warning"><span class="fas fa-pencil-alt"></span></a>';
+											+ '/product" class="btn btn-warning"><span class="fa fa-pencil"></span></a>';
 									return str;
 
 								}
@@ -407,5 +422,76 @@ $(function() {
 	}
 
 	// -----------------------
+	/* handle refresh cart*/	
+	$('button[name="refreshCart"]').click(function(){
+		var cartLineId = $(this).attr('value');
+		var countElement = $('#count_' + cartLineId);
+		
+		var originalCount = countElement.attr('value');
+		var currentCount = countElement.val();
+		// do the checking only the count has changed
+		if(currentCount !== originalCount) {
+			
+			// check if the quantity is within the specified range
+			if(countElement.val() < 1 || countElement.val() > 3) {
+				// set the field back to the original field
+				countElement.val(originalCount);
+				bootbox.alert({
+					size: 'medium',
+			    	title: 'Error',
+			    	message: 'Product Count should be minimum 1 and maximum 3!'
+				});
+			}
+			else {
+				// use the window.location.href property to send the request to the server
+				var updateUrl = window.contextRoot + '/cart/' + cartLineId + '/update?count=' + currentCount;
+				window.location.href = updateUrl;
+			}
+		}
+	});	
+	
+	
+	// ----------------------------
+	// Payment Controller
+	// ----------------------------
+	
+	/*var App = angular.module('paymentApp', []);
+	App.controller('paymentCtrl',['$scope','$http','$q', function($scope, $http, $q) {
 
+	    $scope.showSubmitButton = false;
+	    $scope.productinfo = 'Online Course';
+	    $scope.firstname = '';
+	    $scope.email = '';
+	    $scope.phone = '';
+	    $scope.amount = '';
+	    $scope.surl = '';
+	    $scope.furl = '';
+	    $scope.key = '';
+	    $scope.hash = '';
+	    $scope.txnid = '';
+
+	    $scope.confirmPayment = function() {
+	        var url = 'http://localhost:9090/payment/payment-details';
+	        var data = {productInfo: $scope.productinfo, email: $scope.email, name: $scope.firstname, phone: $scope.phone, amount:$scope.amount};
+	        $http.post(url, data)
+	            .then(function (response) {
+	                    console.log(response.data);
+	                    $scope.txnid = response.data.txnId;
+	                    $scope.surl = response.data.sUrl;
+	                    $scope.furl = response.data.fUrl;
+	                    $scope.key = response.data.key;
+	                    $scope.hash = response.data.hash;
+	                    $scope.showSubmitButton = true;
+	                },
+	                function (errResponse) {
+	                    if (errResponse.status == -1) {
+	                        errResponse.status = 408;
+	                        errResponse.statusText = 'Server Timeout.';
+	                    }
+	                    alert(errResponse.status + ':' + errResponse.statusText);
+	                });
+	    }
+	}]);*/
+	
+	
 });

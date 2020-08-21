@@ -13,6 +13,7 @@
 
 	<!-- Bootstrap Core -->
 	<script src="${js}/bootstrap.min.js"></script>
+	
 
 	<!-- Data Table -->
 	<script src="${js}/jquery.dataTables.js"></script>

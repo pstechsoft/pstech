@@ -1,4 +1,4 @@
-<%@include file="../shared/flows-header.jsp"%>
+<%@include file="../flows-shared/flows-header.jsp"%>
 <div class="form-group row">
 	<div class="col-lg-8 mx-auto pt-5">
 		<div class="text-center">
@@ -13,4 +13,4 @@
 	</div>
 </div>
 
-<%@include file="../shared/flows-footer.jsp"%>
+<%@include file="../flows-shared/flows-footer.jsp"%>

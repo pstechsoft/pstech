@@ -1,3 +1,7 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
+
 <!-- First Top carousel -->
 <div class="carousel slide bg-dark" id="carouselFirst"
 	data-ride="carousel">
@@ -76,7 +80,9 @@
 
 			<div class="col-md-4 m-right">
 				<h4>CALL US ANYTIME</h4>
-				<p>+91-9439231191</p>
+				<p>
+					<i class="fa fa-phone"></i> 9439231191
+				</p>
 			</div>
 
 			<div class="col-md-4">
@@ -113,23 +119,51 @@
 										class="img-responsive img-fluid" alt="">
 								</div>
 								<div class="thumb-content">
-									<h4>HP Envy</h4>
-									<p class="item-price">
-										<strike><i class="fa fa-inr"></i> 67972.00</strike> <span><i
-											class="fa fa-inr fa-sm"></i> 66360.00</span>
-									</p>
-									<div class="star-rating">
-										<ul class="list-inline">
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-										</ul>
-									</div>
-									<button class="btn btn-danger">
-										<i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart
-									</button>
+									<c:forEach items="${products}" var="product" begin="1" end="1">
+										<h4>${product.name}</h4>
+										<p class="item-price">
+											<strike><i class="fa fa-inr"></i> 67972.00</strike> <span>
+												<i class="fa fa-inr fa-sm"></i> ${product.unitPrice}
+											</span>
+										</p>
+										<div class="star-rating">
+											<ul class="list-inline">
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+											</ul>
+										</div>
+										<c:choose>
+											<c:when test="${product.quantity < 1}">
+												<h6>
+													Qty. Available: <span style="color: red">Out of
+														Stock!</span>
+												</h6>
+											</c:when>
+											<c:otherwise>
+												<h6>Qty. Available: ${product.quantity}</h6>
+											</c:otherwise>
+										</c:choose>
+										<security:authorize access="hasAuthority('USER')">
+											<c:choose>
+												<c:when test="${product.quantity < 1}">
+													<a href="javascript:void(0)"
+														class="btn btn-success disabled"> <strike> <span
+															class="fa fa-cart-plus"></span>Add to Cart
+													</strike>
+													</a>
+												</c:when>
+												<c:otherwise>
+													<a href="${contextRoot}/cart/add/${product.id}/product"
+														class="btn btn-success"> <i class="fa fa-cart-plus"></i>
+														Add to Cart
+													</a>
+												</c:otherwise>
+											</c:choose>
+										</security:authorize>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -140,24 +174,52 @@
 										class="img-responsive img-fluid" alt="">
 								</div>
 								<div class="thumb-content">
-									<h4>Sandisk Cruzer Blade 16GB</h4>
-									<p class="item-price">
-										<strike><i class="fa fa-inr"></i> 550.00</strike> <span><i
-											class="fa fa-inr fa-sm"></i> 330.00</span>
-									</p>
-									<div class="star-rating">
-										<ul class="list-inline">
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i
-												class="fas fa-star-half-alt"></i></li>
-										</ul>
-									</div>
-									<button class="btn btn-danger">
-										<i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart
-									</button>
+									<c:forEach items="${products}" var="product" begin="4" end="5">
+										<h4>${product.name}</h4>
+										<p class="item-price">
+											<strike><i class="fa fa-inr"></i> 550.00</strike> <span><i
+												class="fa fa-inr fa-sm"></i> ${product.unitPrice}</span>
+										</p>
+										<div class="star-rating">
+											<ul class="list-inline">
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i
+													class="fa fa-star-half-o"></i></li>
+											</ul>
+										</div>
+										<c:choose>
+											<c:when test="${product.quantity < 1}">
+												<h6>
+													Qty. Available: <span style="color: red">Out of
+														Stock!</span>
+												</h6>
+											</c:when>
+
+											<c:otherwise>
+												<h6>Qty. Available: ${product.quantity}</h6>
+											</c:otherwise>
+										</c:choose>
+										<security:authorize access="hasAuthority('USER')">
+											<c:choose>
+												<c:when test="${product.quantity < 1}">
+													<a href="javascript:void(0)"
+														class="btn btn-success disabled"> <strike> <span
+															class="fa fa-cart-plus"></span>Add to Cart
+													</strike>
+													</a>
+												</c:when>
+												<c:otherwise>
+													<a href="${contextRoot}/cart/add/${product.id}/product"
+														class="btn btn-success"> <i class="fa fa-cart-plus"></i>
+														Add to Cart
+													</a>
+												</c:otherwise>
+											</c:choose>
+										</security:authorize>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -168,23 +230,50 @@
 										class="img-responsive img-fluid" alt="">
 								</div>
 								<div class="thumb-content">
-									<h4>Hp Envy X360</h4>
-									<p class="item-price">
-										<strike><i class="fa fa-inr"></i> 83496.00</strike> <span><i
-											class="fa fa-inr fa-sm"></i> 81794.00</span>
-									</p>
-									<div class="star-rating">
-										<ul class="list-inline">
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="far fa-star"></i></li>
-										</ul>
-									</div>
-									<button class="btn btn-danger">
-										<i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart
-									</button>
+									<c:forEach items="${products}" var="product" begin="0" end="0">
+										<h4>${product.name}</h4>
+										<p class="item-price">
+											<strike><i class="fa fa-inr"></i> 83496.00</strike> <span><i
+												class="fa fa-inr fa-sm"></i> ${product.unitPrice}</span>
+										</p>
+										<div class="star-rating">
+											<ul class="list-inline">
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+											</ul>
+										</div>
+										<c:choose>
+											<c:when test="${product.quantity < 1}">
+												<h6>
+													Qty. Available: <span style="color: red">Out of
+														Stock!</span>
+												</h6>
+											</c:when>
+											<c:otherwise>
+												<h6>Qty. Available: ${product.quantity}</h6>
+											</c:otherwise>
+										</c:choose>
+										<security:authorize access="hasAuthority('USER')">
+											<c:choose>
+												<c:when test="${product.quantity < 1}">
+													<a href="javascript:void(0)"
+														class="btn btn-success disabled"> <strike> <span
+															class="fa fa-cart-plus"></span>Add to Cart
+													</strike>
+													</a>
+												</c:when>
+												<c:otherwise>
+													<a href="${contextRoot}/cart/add/${product.id}/product"
+														class="btn btn-success"> <i class="fa fa-cart-plus"></i>
+														Add to Cart
+													</a>
+												</c:otherwise>
+											</c:choose>
+										</security:authorize>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -195,24 +284,51 @@
 										class="img-responsive img-fluid" alt="">
 								</div>
 								<div class="thumb-content">
-									<h4>K7 Total 1User 1Year</h4>
-									<p class="item-price">
-										<strike><i class="fa fa-inr"></i> 1299.00</strike> <span><i
-											class="fa fa-inr fa-sm"></i> 550.00</span>
-									</p>
-									<div class="star-rating">
-										<ul class="list-inline">
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i
-												class="fas fa-star-half-alt"></i></li>
-										</ul>
-									</div>
-									<button class="btn btn-danger">
-										<i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart
-									</button>
+									<c:forEach items="${products}" var="product" begin="3" end="3">
+										<h4>${product.name}</h4>
+										<p class="item-price">
+											<strike><i class="fa fa-inr"></i> 1299.00</strike> <span><i
+												class="fa fa-inr fa-sm"></i> ${product.unitPrice}</span>
+										</p>
+										<div class="star-rating">
+											<ul class="list-inline">
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i
+													class="fa fa-star-half-o"></i></li>
+											</ul>
+										</div>
+										<c:choose>
+											<c:when test="${product.quantity < 1}">
+												<h6>
+													Qty. Available: <span style="color: red">Out of
+														Stock!</span>
+												</h6>
+											</c:when>
+											<c:otherwise>
+												<h6>Qty. Available: ${product.quantity}</h6>
+											</c:otherwise>
+										</c:choose>
+										<security:authorize access="hasAuthority('USER')">
+											<c:choose>
+												<c:when test="${product.quantity < 1}">
+													<a href="javascript:void(0)"
+														class="btn btn-success disabled"> <strike> <span
+															class="fa fa-cart-plus"></span>Add to Cart
+													</strike>
+													</a>
+												</c:when>
+												<c:otherwise>
+													<a href="${contextRoot}/cart/add/${product.id}/product"
+														class="btn btn-success"> <i class="fa fa-cart-plus"></i>
+														Add to Cart
+													</a>
+												</c:otherwise>
+											</c:choose>
+										</security:authorize>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -223,28 +339,54 @@
 						<div class="col-sm-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
-									<img src="${images}/HP Pavilion 2.jpg"
+									<img src="${images}/HP Envy 13au1.jpg"
 										class="img-responsive img-fluid" alt="">
 								</div>
 								<div class="thumb-content">
-									<h4>Hp Pavilion</h4>
-									<p class="item-price">
-										<strike><i class="fa fa-inr"></i> 81250.00</strike> <span><i
-											class="fa fa-inr fa-sm"></i> 78193.00</span>
-									</p>
-									<div class="star-rating">
-										<ul class="list-inline">
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i
-												class="fas fa-star-half-alt"></i></li>
-										</ul>
-									</div>
-									<button class="btn btn-danger">
-										<i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart
-									</button>
+									<c:forEach items="${products}" var="product" begin="0" end="0">
+										<h4>${product.name}</h4>
+										<p class="item-price">
+											<strike><i class="fa fa-inr"></i> 83496.00</strike> <span><i
+												class="fa fa-inr fa-sm"></i> ${product.unitPrice}</span>
+										</p>
+										<div class="star-rating">
+											<ul class="list-inline">
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+											</ul>
+										</div>
+										<c:choose>
+											<c:when test="${product.quantity < 1}">
+												<h6>
+													Qty. Available: <span style="color: red">Out of
+														Stock!</span>
+												</h6>
+											</c:when>
+											<c:otherwise>
+												<h6>Qty. Available: ${product.quantity}</h6>
+											</c:otherwise>
+										</c:choose>
+										<security:authorize access="hasAuthority('USER')">
+											<c:choose>
+												<c:when test="${product.quantity < 1}">
+													<a href="javascript:void(0)"
+														class="btn btn-success disabled"> <strike> <span
+															class="fa fa-cart-plus"></span>Add to Cart
+													</strike>
+													</a>
+												</c:when>
+												<c:otherwise>
+													<a href="${contextRoot}/cart/add/${product.id}/product"
+														class="btn btn-success"> <i class="fa fa-cart-plus"></i>
+														Add to Cart
+													</a>
+												</c:otherwise>
+											</c:choose>
+										</security:authorize>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -262,35 +404,36 @@
 		</div>
 	</div>
 </div>
+<!-- Location & Contact -->
+<div class="container-fluid offer pt-1 pb-1 bg-orange d-none d-md-block">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4 m-right">
+				<h4>ONE CALL SERVICING</h4>
+				<p>
+					<i class="fa fa-phone"></i> 9439231191
+				</p>
+			</div>
 
+			<div class="col-md-4 m-right">
+				<h4>CONTACT US</h4>
+				<p>
+					<i class="fa fa-envelope"></i> pstech24x7@gmail.com
+				</p>
+			</div>
 
+			<div class="col-md-4">
+				<h4>OUR LOCATION</h4>
+				<p>Rourkela,Odisha</p>
+			</div>
+		</div>
+	</div>
+</div>
 
 <!-- Third Carousel -->
 <div class="row">
 	<div class="col-md-12">
-		<div
-			class="container-fluid offer pt-1 pb-1 bg-orange d-none d-md-block">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-4 m-right">
-						<h4>ONE CALL SERVICING</h4>
-						<p>
-							+91-9439231191
-						</p>
-					</div>
 
-					<div class="col-md-4 m-right">
-						<h4>CONTACT US</h4>
-						<p><i class="far fa-envelope">pstech24x7@gmail.com</i></p>
-					</div>
-
-					<div class="col-md-4">
-						<h4>OUR LOCATION</h4>
-						<p>Rourkela,Odisha</p>
-					</div>
-				</div>
-			</div>
-		</div>
 		<h2>
 			ALL <b>LAPTOP</b>
 		</h2>
@@ -313,23 +456,51 @@
 										class="img-responsive img-fluid" alt="">
 								</div>
 								<div class="thumb-content">
-									<h4>HP Envy</h4>
-									<p class="item-price">
-										<strike><i class="fa fa-inr"></i> 67972.00</strike> <span><i
-											class="fa fa-inr fa-sm"></i> 66360.00</span>
-									</p>
-									<div class="star-rating">
-										<ul class="list-inline">
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-										</ul>
-									</div>
-									<button class="btn btn-danger">
-										<i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart
-									</button>
+									<c:forEach items="${products}" var="product" begin="1" end="1">
+										<h4>${product.name}</h4>
+										<p class="item-price">
+											<strike><i class="fa fa-inr"></i> 67972.00</strike> <span>
+												<i class="fa fa-inr fa-sm"></i> ${product.unitPrice}
+											</span>
+										</p>
+										<div class="star-rating">
+											<ul class="list-inline">
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+											</ul>
+										</div>
+										<c:choose>
+											<c:when test="${product.quantity < 1}">
+												<h6>
+													Qty. Available: <span style="color: red">Out of
+														Stock!</span>
+												</h6>
+											</c:when>
+											<c:otherwise>
+												<h6>Qty. Available: ${product.quantity}</h6>
+											</c:otherwise>
+										</c:choose>
+										<security:authorize access="hasAuthority('USER')">
+											<c:choose>
+												<c:when test="${product.quantity < 1}">
+													<a href="javascript:void(0)"
+														class="btn btn-success disabled"> <strike> <span
+															class="fa fa-cart-plus"></span>Add to Cart
+													</strike>
+													</a>
+												</c:when>
+												<c:otherwise>
+													<a href="${contextRoot}/cart/add/${product.id}/product"
+														class="btn btn-success"> <i class="fa fa-cart-plus"></i>
+														Add to Cart
+													</a>
+												</c:otherwise>
+											</c:choose>
+										</security:authorize>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -340,24 +511,51 @@
 										class="img-responsive img-fluid" alt="">
 								</div>
 								<div class="thumb-content">
-									<h4>HP Pavilion 13-AN0046TU</h4>
-									<p class="item-price">
-										<strike><i class="fa fa-inr"></i> 81930.00</strike> <span><i
-											class="fa fa-inr fa-sm"></i> 78193.00</span>
-									</p>
-									<div class="star-rating">
-										<ul class="list-inline">
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i
-												class="fas fa-star-half-alt"></i></li>
-										</ul>
-									</div>
-									<button class="btn btn-danger">
-										<i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart
-									</button>
+									<c:forEach items="${products}" var="product" begin="2" end="2">
+										<h4>HP Pavilion 13-AN0046TU</h4>
+										<p class="item-price">
+											<strike><i class="fa fa-inr"></i> 81930.00</strike> <span><i
+												class="fa fa-inr fa-sm"></i> ${product.unitPrice}</span>
+										</p>
+										<div class="star-rating">
+											<ul class="list-inline">
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i
+													class="fa fa-star-half-o"></i></li>
+											</ul>
+										</div>
+										<c:choose>
+											<c:when test="${product.quantity < 1}">
+												<h6>
+													Qty. Available: <span style="color: red">Out of
+														Stock!</span>
+												</h6>
+											</c:when>
+											<c:otherwise>
+												<h6>Qty. Available: ${product.quantity}</h6>
+											</c:otherwise>
+										</c:choose>
+										<security:authorize access="hasAuthority('USER')">
+											<c:choose>
+												<c:when test="${product.quantity < 1}">
+													<a href="javascript:void(0)"
+														class="btn btn-success disabled"> <strike> <span
+															class="fa fa-cart-plus"></span>Add to Cart
+													</strike>
+													</a>
+												</c:when>
+												<c:otherwise>
+													<a href="${contextRoot}/cart/add/${product.id}/product"
+														class="btn btn-success"> <i class="fa fa-cart-plus"></i>
+														Add to Cart
+													</a>
+												</c:otherwise>
+											</c:choose>
+										</security:authorize>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -368,23 +566,50 @@
 										class="img-responsive img-fluid" alt="">
 								</div>
 								<div class="thumb-content">
-									<h4>Hp Envy X360</h4>
-									<p class="item-price">
-										<strike><i class="fa fa-inr"></i> 83496.00</strike> <span><i
-											class="fa fa-inr fa-sm"></i> 81794.00</span>
-									</p>
-									<div class="star-rating">
-										<ul class="list-inline">
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="far fa-star"></i></li>
-										</ul>
-									</div>
-									<button class="btn btn-danger">
-										<i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart
-									</button>
+									<c:forEach items="${products}" var="product" begin="0" end="0">
+										<h4>${product.name}</h4>
+										<p class="item-price">
+											<strike><i class="fa fa-inr"></i> 83496.00</strike> <span><i
+												class="fa fa-inr fa-sm"></i> ${product.unitPrice}</span>
+										</p>
+										<div class="star-rating">
+											<ul class="list-inline">
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star-o"></i></li>
+											</ul>
+										</div>
+										<c:choose>
+											<c:when test="${product.quantity < 1}">
+												<h6>
+													Qty. Available: <span style="color: red">Out of
+														Stock!</span>
+												</h6>
+											</c:when>
+											<c:otherwise>
+												<h6>Qty. Available: ${product.quantity}</h6>
+											</c:otherwise>
+										</c:choose>
+										<security:authorize access="hasAuthority('USER')">
+											<c:choose>
+												<c:when test="${product.quantity < 1}">
+													<a href="javascript:void(0)"
+														class="btn btn-success disabled"> <strike> <span
+															class="fa fa-cart-plus"></span>Add to Cart
+													</strike>
+													</a>
+												</c:when>
+												<c:otherwise>
+													<a href="${contextRoot}/cart/add/${product.id}/product"
+														class="btn btn-success"> <i class="fa fa-cart-plus"></i>
+														Add to Cart
+													</a>
+												</c:otherwise>
+											</c:choose>
+										</security:authorize>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -395,24 +620,51 @@
 										class="img-responsive img-fluid" alt="">
 								</div>
 								<div class="thumb-content">
-									<h4>K7 Total 1User 1Year</h4>
-									<p class="item-price">
-										<strike><i class="fa fa-inr"></i> 1299.00</strike> <span><i
-											class="fa fa-inr fa-sm"></i> 550.00</span>
-									</p>
-									<div class="star-rating">
-										<ul class="list-inline">
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i
-												class="fas fa-star-half-alt"></i></li>
-										</ul>
-									</div>
-									<button class="btn btn-danger">
-										<i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart
-									</button>
+									<c:forEach items="${products}" var="product" begin="3" end="3">
+										<h4>${product.name}</h4>
+										<p class="item-price">
+											<strike><i class="fa fa-inr"></i> 1299.00</strike> <span><i
+												class="fa fa-inr fa-sm"></i> ${product.unitPrice}</span>
+										</p>
+										<div class="star-rating">
+											<ul class="list-inline">
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i
+													class="fa fa-star-half-o"></i></li>
+											</ul>
+										</div>
+										<c:choose>
+											<c:when test="${product.quantity < 1}">
+												<h6>
+													Qty. Available: <span style="color: red">Out of
+														Stock!</span>
+												</h6>
+											</c:when>
+											<c:otherwise>
+												<h6>Qty. Available: ${product.quantity}</h6>
+											</c:otherwise>
+										</c:choose>
+										<security:authorize access="hasAuthority('USER')">
+											<c:choose>
+												<c:when test="${product.quantity < 1}">
+													<a href="javascript:void(0)"
+														class="btn btn-success disabled"> <strike> <span
+															class="fa fa-cart-plus"></span>Add to Cart
+													</strike>
+													</a>
+												</c:when>
+												<c:otherwise>
+													<a href="${contextRoot}/cart/add/${product.id}/product"
+														class="btn btn-success"> <i class="fa fa-cart-plus"></i>
+														Add to Cart
+													</a>
+												</c:otherwise>
+											</c:choose>
+										</security:authorize>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -427,24 +679,51 @@
 										class="img-responsive img-fluid" alt="">
 								</div>
 								<div class="thumb-content">
-									<h4>Hp Pavilion</h4>
-									<p class="item-price">
-										<strike><i class="fa fa-inr"></i> 81250.00</strike> <span><i
-											class="fa fa-inr fa-sm"></i> 78193.00</span>
-									</p>
-									<div class="star-rating">
-										<ul class="list-inline">
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i class="fa fa-star"></i></li>
-											<li class="list-inline-item"><i
-												class="fas fa-star-half-alt"></i></li>
-										</ul>
-									</div>
-									<button class="btn btn-danger">
-										<i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart
-									</button>
+									<c:forEach items="${products}" var="product" begin="2" end="2">
+										<h4>${product.name}</h4>
+										<p class="item-price">
+											<strike><i class="fa fa-inr"></i> 81250.00</strike> <span><i
+												class="fa fa-inr fa-sm"></i> ${product.unitPrice}</span>
+										</p>
+										<div class="star-rating">
+											<ul class="list-inline">
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i class="fa fa-star"></i></li>
+												<li class="list-inline-item"><i
+													class="fa fa-star-half-o"></i></li>
+											</ul>
+										</div>
+										<c:choose>
+											<c:when test="${product.quantity < 1}">
+												<h6>
+													Qty. Available: <span style="color: red">Out of
+														Stock!</span>
+												</h6>
+											</c:when>
+											<c:otherwise>
+												<h6>Qty. Available: ${product.quantity}</h6>
+											</c:otherwise>
+										</c:choose>
+										<security:authorize access="hasAuthority('USER')">
+											<c:choose>
+												<c:when test="${product.quantity < 1}">
+													<a href="javascript:void(0)"
+														class="btn btn-success disabled"> <strike> <span
+															class="fa fa-cart-plus"></span>Add to Cart
+													</strike>
+													</a>
+												</c:when>
+												<c:otherwise>
+													<a href="${contextRoot}/cart/add/${product.id}/product"
+														class="btn btn-success"> <i class="fa fa-cart-plus"></i>
+														Add to Cart
+													</a>
+												</c:otherwise>
+											</c:choose>
+										</security:authorize>
+									</c:forEach>
 								</div>
 							</div>
 						</div>

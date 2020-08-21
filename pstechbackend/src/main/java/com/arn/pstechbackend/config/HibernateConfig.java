@@ -32,7 +32,7 @@ public class HibernateConfig {
 	@Bean("dataSource")
 	public DataSource datasource(){
 		DriverManagerDataSource ds = new DriverManagerDataSource();
-		ds.setDriverClassName("com.mysql.jdbc.Driver");
+		ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		ds.setUrl("jdbc:mysql://localhost:3306/pstech");
 		ds.setUsername("root");
 		ds.setPassword("root");
@@ -43,7 +43,7 @@ public class HibernateConfig {
 	//All the Hibernate Properties will be returned in this method
 	public Properties hibernateProperties(){
 		Properties properties = new Properties();
-		properties.put("hibernate.dialect","org.hibernate.dialect.MySQLDialect");
+		properties.put("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");
 		properties.put("hibernate.hbm2ddl.auto", "update");

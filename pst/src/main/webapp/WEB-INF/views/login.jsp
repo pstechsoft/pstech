@@ -38,10 +38,10 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel='stylesheet'
+<!-- <link rel='stylesheet'
 	href='https://use.fontawesome.com/releases/v5.6.3/css/all.css'
 	integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/'
-	crossorigin='anonymous'>
+	crossorigin='anonymous'> -->
 <link rel="stylesheet" href="${css}/myapp.css">
 
 </head>
@@ -146,8 +146,8 @@
 								<div class="form-group row">
 									<div class="col-lg-8 ml-auto">
 										<input type="hidden" name="${_csrf.parameterName}"
-											value="${_csrf.token}" /> <input type="submit" value="Login"
-											class="btn btn-primary" />
+											value="${_csrf.token}" /><input type="submit" value="Login"
+											class="btn btn-primary">
 									</div>
 								</div>
 							</form>

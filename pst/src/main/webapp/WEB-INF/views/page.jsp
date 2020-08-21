@@ -41,10 +41,10 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel='stylesheet'
+<!-- <link rel='stylesheet'
 	href='https://use.fontawesome.com/releases/v5.6.3/css/all.css'
 	integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/'
-	crossorigin='anonymous'>
+	crossorigin='anonymous'> -->
 <link rel="stylesheet" href="${css}/myapp.css">
 
 </head>
@@ -67,6 +67,11 @@
 	<c:if test="${userClickManageProducts==true}">
 		<%@include file="manageProducts.jsp"%>
 	</c:if>
+	
+	<!-- Loads only when user clicks Show Cart -->
+	<c:if test="${userClickShowCart==true}">
+		<%@include file="cart.jsp"%>
+	</c:if>
 
 	<c:if test="${userClickMyAccount == true }"><%@include
 			file="myaccount.jsp"%>
@@ -86,6 +91,12 @@
 	<c:if test="${userClickShowProduct == true }"><%@include
 			file="singleProduct.jsp"%>
 	</c:if>
+	
+	<!-- payuform page -->
+	<c:if test="${userClickPayuform == true }"><%@include
+			file="payuform.jsp"%>
+	</c:if>
+	
 
 	<!-- Footer -->
 	<%@include file="./shared/footer.jsp"%>

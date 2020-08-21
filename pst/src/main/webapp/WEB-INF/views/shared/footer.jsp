@@ -44,7 +44,7 @@
 								Desktop PCs, Laptops, Antivirus, Surveillance Cameras. We're
 								dedicated to giving you the very best of products, with...</p>
 							<a href="${contextRoot}/about" class="btn btn-danger" role="button">
-								<i class="fa fa-book-reader" aria-hidden="true"> Read More</i>
+								<i class="fa fa-pencil-square-o"></i> Read More
 							</a>
 						</div>
 					</div>

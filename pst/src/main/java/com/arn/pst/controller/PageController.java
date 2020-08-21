@@ -31,6 +31,7 @@ public class PageController {
 	@Autowired
 	private ProductDAO productDAO;
 
+
 	@RequestMapping(value = { "/", "/home", "/index" })
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
@@ -41,24 +42,32 @@ public class PageController {
 
 		// passing the list of categories
 		mv.addObject("categories", categoryDAO.list());
-
+		mv.addObject("products", productDAO.list());
 		mv.addObject("userClickHome", true);
 		return mv;
 	}
 
-	@RequestMapping(value = { "/cart" })
+	/*@RequestMapping(value = { "/cart" })
 	public ModelAndView cart() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "My Cart");
 		mv.addObject("userClickMyCart", true);
 		return mv;
-	}
+	}*/
 
 	@RequestMapping(value = { "/about" })
 	public ModelAndView about() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "About Us");
 		mv.addObject("userClickAbout", true);
+		return mv;
+	}
+	
+	@RequestMapping(value = { "/payuform" })
+	public ModelAndView payuform() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "PayUForm");
+		mv.addObject("userClickPayuform", true);
 		return mv;
 	}
 
@@ -90,11 +99,12 @@ public class PageController {
 		mv.addObject("userClickCategoryProducts", true);
 		return mv;
 	}
-
+		
 	// Fetching a single product
 	@RequestMapping(value = "/show/{id}/product")
 	public ModelAndView showSingleProduct(@PathVariable int id) throws ProductNotFoundException {
 		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("products", productDAO.list());
 
 		Product product = productDAO.get(id);
 
@@ -104,7 +114,7 @@ public class PageController {
 		// update the view count
 		product.setViews(product.getViews() + 1);
 		productDAO.update(product);
-
+		
 		mv.addObject("title", product.getName());
 		mv.addObject("product", product);
 		mv.addObject("userClickShowProduct", true);
