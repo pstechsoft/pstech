@@ -1,4 +1,4 @@
-<%@ page import="java.util.*" %>
+<%-- <%@ page import="java.util.*" %>
 <%@ page import="java.security.*" %>
 
 <%!
@@ -36,7 +36,7 @@ public boolean empty(String s)
 	String merchant_key="P17f9Vcg";
 	String salt="GaDTp7GY7k";
 	String action1 ="";
-	String base_url="https://sandboxsecure.payu.in";
+    String base_url="https://sandboxsecure.payu.in";
 	int error=0;
 	String hashString="";
 	
@@ -71,6 +71,7 @@ public boolean empty(String s)
 			|| empty(params.get("amount"))
 			|| empty(params.get("firstname"))
 			|| empty(params.get("email"))
+			/* || empty(params.get("subject")) */
 			|| empty(params.get("phone"))
 			|| empty(params.get("productinfo"))
 			|| empty(params.get("surl"))
@@ -78,8 +79,8 @@ public boolean empty(String s)
 			|| empty(params.get("service_provider"))
 	)
 			
-			/* error=1; 
-		 else */ { 
+			   /*  error=1; 
+		 else   */   { 
 			String[] hashVarSeq=hashSequence.split("\\|");
 			
 			for(String part : hashVarSeq)
@@ -90,14 +91,14 @@ public boolean empty(String s)
 			hashString=hashString.concat(salt);
 			
 			 hash=hashCal("SHA-512",hashString);
-			action1=base_url.concat("/_payment");
+			 action1=base_url.concat("/_payment");
 		}
  } 
-	else if(!empty(params.get("hash")))
+	 else if(!empty(params.get("hash")))
 	{
 		hash=params.get("hash");
 		action1=base_url.concat("/_payment");
-	}
+	} 
 		
 %>
 <html>
@@ -136,6 +137,8 @@ function submitPayuForm() {
         <tr>
           <td>Email: </td>
           <td><input name="email" id="email" value="<%= (empty(params.get("email"))) ? "" : params.get("email") %>" /></td>
+          <td>Subject: </td>
+          <td><input name="subject" id="subject" value="<%= (empty(params.get("subject"))) ? "" : params.get("subject") %>" /></td>
           <td>Phone: </td>
           <td><input name="phone" value="<%= (empty(params.get("phone"))) ? "" : params.get("phone") %>" /></td>
         </tr>
@@ -204,4 +207,4 @@ function submitPayuForm() {
 
 
 </body>
-</html>
+</html> --%>

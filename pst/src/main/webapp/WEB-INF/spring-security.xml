@@ -21,9 +21,12 @@
 		<intercept-url pattern="/manage/**" access="hasAuthority('ADMIN')" />
 		<!-- only user access (who is registered) -->
 		<intercept-url pattern="/cart/**" access="hasAuthority('USER')" />
+		<intercept-url pattern="/email/**" access="hasAuthority('USER')" />
 		<!-- rest of the world -->
 		<intercept-url pattern="/**" access="permitAll" />
 		<form-login login-page="/login" />
+		<form-login login-page="/email/**" />
+		
 		<access-denied-handler error-page="/access-denied" />
 	</http>
 

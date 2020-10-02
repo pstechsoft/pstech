@@ -18,13 +18,15 @@
 					<th style="width: 50%">Product</th>
 					<th style="width: 10%">Price</th>
 					<th style="width: 8%">Quantity</th>
-					<th style="width: 22%" class="text-center">Subtotal</th>
+					<th style="width: 10%" class="text-center">Tax</th>
+					<th style="width: 12%" class="text-center">Subtotal</th>
 					<th style="width: 10%"></th>
 				</tr>
 			</thead>
 			<tbody>
 
 				<c:forEach items="${cartLines}" var="cartLine">
+
 					<c:if test="${cartLine.available == false}">
 						<c:set var="availableCount" value="${availableCount - 1}" />
 					</c:if>
@@ -32,7 +34,7 @@
 						<td data-th="Product">
 							<div class="row">
 								<div class="col-sm-2 hidden-xs">
-									<img src="${images}/${cartLine.product.code}.jpg"
+									 <img src="${images}/${cartLine.product.code}.jpg"
 										alt="${cartLine.product.name}" class="img-responsive cartImg" />
 								</div>
 								<!-- <div class="col-sm-10"> -->
@@ -51,6 +53,8 @@
 						<td data-th="Quantity"><input type="number"
 							id="count_${cartLine.id}" min="1" max="3"
 							class="form-control text-center" value="${cartLine.productCount}"></td>
+						<td data-th="Tax" class="text-center">&#8377; ${product.tax}
+							/-</td>
 						<td data-th="Subtotal" class="text-center">&#8377;
 							${cartLine.total} /-</td>
 						<td class="actions" data-th=""><c:if
@@ -64,7 +68,6 @@
 						</a></td>
 					</tr>
 				</c:forEach>
-
 			</tbody>
 			<tfoot>
 				<!-- <tr class="visible-xs">
@@ -76,9 +79,11 @@
 						class="btn btn-warning"><i class="fa fa-angle-left"></i>
 							Continue Shopping</a></td>
 					<td colspan="2" class="hidden-xs"></td>
+					<td></td>
 					<td class="hidden-xs text-center"><strong>Total
 							&#8377; ${userModel.cart.grandTotal}/-</strong></td>
-					<c:choose>
+					<td></td>
+					<%-- <c:choose>
 						<c:when test="${availableCount != 0}">
 							<td><a href="${contextRoot}/cart/validate"
 								class="btn btn-success btn-block">Checkout <i
@@ -87,10 +92,10 @@
 						<c:otherwise>
 							<td><a href="javascript:void(0)"
 								class="btn btn-success btn-block disabled"><strike>Checkout
-										<i class="fa fa-angle-right"></i>
+										<span class="fa fa-angle-right"></span>
 								</strike></a></td>
 						</c:otherwise>
-					</c:choose>
+					</c:choose> --%>
 				</tr>
 			</tfoot>
 		</table>

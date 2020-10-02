@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.arn.pst.exception.ProductNotFoundException;
+import com.arn.pst.service.CartService;
 import com.arn.pstechbackend.dao.CategoryDAO;
 import com.arn.pstechbackend.dao.ProductDAO;
 import com.arn.pstechbackend.dto.Category;
@@ -30,6 +31,8 @@ public class PageController {
 	private CategoryDAO categoryDAO;
 	@Autowired
 	private ProductDAO productDAO;
+	@Autowired
+	private CartService cartService;
 
 
 	@RequestMapping(value = { "/", "/home", "/index" })
@@ -47,14 +50,14 @@ public class PageController {
 		return mv;
 	}
 
-	/*@RequestMapping(value = { "/cart" })
+	@RequestMapping(value = { "/cart" })
 	public ModelAndView cart() {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "My Cart");
 		mv.addObject("userClickMyCart", true);
 		return mv;
-	}*/
-
+	}
+	
 	@RequestMapping(value = { "/about" })
 	public ModelAndView about() {
 		ModelAndView mv = new ModelAndView("page");
@@ -71,9 +74,9 @@ public class PageController {
 		return mv;
 	}
 
-	/*
-	 * Methods to load all products
-	 */
+	
+	 // Methods to load all products
+	 
 	@RequestMapping(value = "/show/all/products")
 	public ModelAndView showAllProducts() {
 		ModelAndView mv = new ModelAndView("page");
@@ -84,6 +87,7 @@ public class PageController {
 		mv.addObject("userClickAllProducts", true);
 		return mv;
 	}
+	
 
 	@RequestMapping(value = "/show/category/{id}/products")
 	public ModelAndView showCategoryProducts(@PathVariable("id") int id) {
@@ -122,15 +126,28 @@ public class PageController {
 
 	}
 
-	@RequestMapping(value = { "/myaccount" })
-	public ModelAndView myaccount() {
+	@RequestMapping(value = { "/myorders" })
+	public ModelAndView myorders(@RequestParam(name = "result", required = false) String result) {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "My Account");
-		mv.addObject("userClickMyAccount", true);
+		mv.addObject("title", "My Order");
+		mv.addObject("userClickMyOrders", true);
+		mv.addObject("cartLines", cartService.getCartLines());
+		if (result != null) {
+			switch (result) {
+			case "deleted":
+				mv.addObject("message", "Your order has been cancelled successfully !");
+				break;
+			}
+		} else {
+			String response = cartService.validateCartLine();
+			if (response.equals("result=modified")) {
+				mv.addObject("message", "One or more items inside cart has been modified!");
+			}
+		}
 		return mv;
 	}
 
-	/* Register Page */
+	 //Register Page 
 	@RequestMapping(value = { "/register" })
 	public ModelAndView register() {
 		ModelAndView mv = new ModelAndView("page");
@@ -138,7 +155,7 @@ public class PageController {
 		return mv;
 	}
 
-	/* Login Page */
+	 //Login Page 
 	@RequestMapping(value = "/login")
 	public ModelAndView login(@RequestParam(name = "error", required = false) String error,
 			@RequestParam(name = "logout", required = false) String logout) {
@@ -153,7 +170,7 @@ public class PageController {
 		return mv;
 	}
 
-	/* Logout Page */
+	 //Logout Page 
 	@RequestMapping(value = "/perform-logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		// Invalidates HTTP Session, then unbinds any objects bound to it.
@@ -165,7 +182,7 @@ public class PageController {
 		return "redirect:/login?logout";
 	}
 
-	/* Access-Denied Page */
+	 //Access-Denied Page 
 	@RequestMapping(value = "/access-denied")
 	public ModelAndView accessDenied() {
 		ModelAndView mv = new ModelAndView("error");

@@ -1,4 +1,15 @@
 <%@include file="../../flows-shared/flows-header.jsp"%>
+<html lang="en">
+<head>
+<script>
+	function pageRedirect() {
+		window.location
+				.replace("${contextRoot}/email/show?&firstname=${checkoutModel.user.firstName}&email=${checkoutModel.user.email}&subject=Your order Info&message=Hi ${checkoutModel.user.firstName}, Thanks for purchasing your order <c:forEach items="${checkoutModel.cartLines}" var="cartLine">${cartLine.product.name},</c:forEach> with order id is ${orderDetail.id}");
+	}
+	setTimeout("pageRedirect()", 5000);
+</script>
+</head>
+<body>
 	<div class="container">
 		<!-- Page Content -->
 
@@ -8,9 +19,29 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
+					<div class="row">
+						<div class="col-lg-6">
+							<address>
+								<br> <img id="brand-image" alt="Website Logo"
+									src="${images}/PS Logo2.png" />
+							</address>
+						</div>
+						<div class="col-lg-6 text-right">
+							<address>
+								<br>Qr.No:-RKV/35,<br>Hamirpur,City:Rourkela<br>Pin:769003,Odisha<br>
+								<br>
+							</address>
+						</div>
+					</div>
 					<div class="invoice-title">
-						<h2>Invoice</h2>
-						<h3 class="pull-right mx-auto p-4">Order # ${orderDetail.id}</h3>
+						<address>
+							<h2>Invoice</h2>
+							<h3 class="pull-right mx-auto p-2 text-light">
+								<b><span class="badge badge-notify">COD</b>
+							</h3>
+							<br>Order No:# ${orderDetail.id}<br> Invoice
+							Date:${orderDetail.orderDate}<br>
+						</address>
 					</div>
 					<hr>
 					<div class="row">
@@ -39,7 +70,7 @@
 					<div class="row">
 						<div class="col-lg-6">
 							<address>
-								<strong>Payment Method:</strong><br> Card Payment <br>
+								<strong>Payment Method:</strong><br> Cash on Delivery <br>
 								${orderDetail.user.email}
 							</address>
 						</div>
@@ -70,7 +101,7 @@
 											<td><strong>Item</strong></td>
 											<td class="text-center"><strong>Price</strong></td>
 											<td class="text-center"><strong>Quantity</strong></td>
-											<td class="text-right"><strong>Totals</strong></td>
+											<td class="text-right"><strong>Total</strong></td>
 										</tr>
 									</thead>
 									<tbody>
@@ -79,12 +110,33 @@
 											<tr>
 												<td>${orderItem.product.name}</td>
 												<td class="text-center">&#8377;
-													${orderItem.buyingPrice}</td>
+													${orderItem.buyingPrice}/-</td>
 												<td class="text-center">${orderItem.productCount}</td>
-												<td class="text-right">&#8377; ${orderItem.total}</td>
+												<td class="text-right">&#8377; ${orderItem.total}/-</td>
 											</tr>
+
 										</c:forEach>
 									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="2" class="hidden-xs"></td>
+											<td class="hidden-xs text-center">Sub Total
+											<td class="text-right">&#8377;
+												${checkoutModel.checkoutTotal}/-</td>
+										</tr>
+										<tr>
+											<td colspan="2" class="hidden-xs"></td>
+											<td class="hidden-xs text-center">Tax
+											<td class="text-right">&#8377; ${checkoutModel.tax}/-</td>
+										</tr>
+										<tr>
+											<td colspan="2" class="hidden-xs"></td>
+											<td class="hidden-xs text-center"><strong>Grand
+													Total</strong>
+											<td class="text-right"><strong>&#8377;
+													${checkoutModel.grandTotal}/-</strong></td>
+										</tr>
+									</tfoot>
 								</table>
 							</div>
 						</div>
@@ -92,9 +144,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="text-center">
-			<a href="${contextRoot}/show/all/products"
-				class="btn btn-lg btn-warning">Continue Shopping</a>
-		</div>
-	</div>
+		<%-- <div class="text-center">
+		<a href="${contextRoot}/show/all/products"
+			class="btn btn-lg btn-warning">Continue Shopping</a>
+	</div> --%>
+</body>
 <%@include file="../../flows-shared/flows-footer.jsp"%>

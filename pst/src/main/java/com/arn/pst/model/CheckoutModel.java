@@ -20,8 +20,11 @@ public class CheckoutModel implements Serializable {
 	private Address shipping;
 	private Cart cart;
 	private List<CartLine> cartLines;
+	private List<OrderDetail> orderDetails;
 	private OrderDetail orderDetail;
+	private double tax;
 	private double checkoutTotal;
+	private int grandTotal;
 
 	public OrderDetail getOrderDetail() {
 		return orderDetail;
@@ -29,6 +32,14 @@ public class CheckoutModel implements Serializable {
 
 	public void setOrderDetail(OrderDetail orderDetail) {
 		this.orderDetail = orderDetail;
+	}
+
+	public double getTax() {
+		return tax;
+	}
+
+	public void setTax(double tax) {
+		this.tax = tax;
 	}
 
 	public Cart getCart() {
@@ -45,6 +56,14 @@ public class CheckoutModel implements Serializable {
 
 	public void setCheckoutTotal(double checkoutTotal) {
 		this.checkoutTotal = checkoutTotal;
+	}
+
+	public int getGrandTotal() {
+		return grandTotal;
+	}
+
+	public void setGrandTotal(int grandTotal) {
+		this.grandTotal = grandTotal;
 	}
 
 	public List<CartLine> getCartLines() {
@@ -71,5 +90,12 @@ public class CheckoutModel implements Serializable {
 	public void setShipping(Address shipping) {
 		this.shipping = shipping;
 	}
-	
+
+	public List<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
 }

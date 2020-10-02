@@ -13,10 +13,10 @@
 				<!-- <div class="col-lg-10 mx-auto p-2 card border-primary mb-3"> -->
 				<c:forEach items="${addresses}" var="address">
 					<div class="col-lg-12">
-						<h5>${address.addressLineOne}</h5>
-						<h5>${address.addressLineTwo}</h5>
-						<h5>${address.city}-${address.postalCode}</h5>
-						<h5>${address.state}-${address.country}</h5>
+						<h6>${address.addressLineOne}</h6>
+						<h6>${address.addressLineTwo}</h6>
+						<h6>${address.city}-${address.postalCode}</h6>
+						<h6>${address.state}-${address.country}</h6>
 						<hr />
 						<div class="text-center">
 							<a

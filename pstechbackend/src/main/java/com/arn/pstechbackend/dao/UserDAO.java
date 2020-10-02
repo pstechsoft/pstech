@@ -3,7 +3,6 @@ package com.arn.pstechbackend.dao;
 import java.util.List;
 
 import com.arn.pstechbackend.dto.Address;
-import com.arn.pstechbackend.dto.Product;
 import com.arn.pstechbackend.dto.User;
 
 public interface UserDAO {

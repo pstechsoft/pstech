@@ -111,4 +111,9 @@ public class ProductDAOImpl implements ProductDAO {
 		return sessionFactory.getCurrentSession().createQuery(query, Product.class).setFirstResult(0)
 				.setMaxResults(count).getResultList();
 	}
+
+	/*@Override
+	public Product getTax(double tax) {
+		return sessionFactory.getCurrentSession().get(Product.class , tax);
+	}*/
 }

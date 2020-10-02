@@ -61,9 +61,12 @@ public class CheckoutHandler {
 			for (CartLine cartLine : cartLines) {
 				checkoutTotal += cartLine.getTotal();
 			}
-
+			//int ii=(int)(Math.random()*((7000000-1)+1))+1;
+		    //String orderId ="PST-2020-"+ii;	
 			checkoutModel.setCartLines(cartLines);
 			checkoutModel.setCheckoutTotal(checkoutTotal);
+			checkoutModel.setTax((checkoutTotal*9)/100);
+			checkoutModel.setGrandTotal((int) (checkoutTotal+checkoutModel.getTax()));
 		}
 
 		return checkoutModel;

@@ -25,7 +25,6 @@ public class HibernateConfig {
 		sessionFactoryBean.setDataSource(datasource());
 		sessionFactoryBean.setPackagesToScan(new String[]{"com.arn.pstechbackend.dto"});
 		sessionFactoryBean.setHibernateProperties(hibernateProperties());
-		
 		return sessionFactoryBean;
 	}
 	
@@ -49,6 +48,7 @@ public class HibernateConfig {
 		properties.put("hibernate.hbm2ddl.auto", "update");
 		return properties;
 	}
+	
 	
 	//transactionManager Bean
 	@Bean

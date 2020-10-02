@@ -40,6 +40,8 @@ public class Product implements Serializable{
 	@Min(value = 1, message = "Please select at least one value!")
 	@Column(name = "unit_price")
 	private double unitPrice;
+	@Min(value = 1, message = "Please select at least one value!")
+	private double tax;
 	private int quantity;
 	@Column(name = "is_active")
 	private boolean active;
@@ -110,6 +112,14 @@ public class Product implements Serializable{
 		this.unitPrice = unitPrice;
 	}
 
+	public double getTax() {
+		return tax;
+	}
+
+	public void setTax(double tax) {
+		this.tax = tax;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -169,7 +179,7 @@ public class Product implements Serializable{
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="
-				+ description + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", active=" + active
+				+ description + ", unitPrice=" + unitPrice + ", tax=" + tax + ", quantity=" + quantity + ", active=" + active
 				+ ", categoryId=" + categoryId + ", supplierId=" + supplierId + ", purchases=" + purchases + ", views="
 				+ views + "]";
 	}

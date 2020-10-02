@@ -245,7 +245,14 @@ $(function() {
 							{
 								data : 'unitPrice',
 								mRender : function(data, type, row) {
-									return '&#8377;' + data
+									return '&#8377;' + data;
+								}
+							},
+							
+							{
+								data : 'tax',
+								mRender : function(data, type, row) {
+									return '&#8377;' + data;
 								}
 							},
 

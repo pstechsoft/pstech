@@ -100,12 +100,13 @@
 					<div class="row">
 						<div class="col-sm-3">
 							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="${images}/HP Envy 13au2.jpg"
-										class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<c:forEach items="${products}" var="product" begin="1" end="1">
+								<c:forEach items="${products}" var="product" begin="1" end="1">
+									<div class="img-box">
+										<a href="${contextRoot}/show/${product.id}/product"> <img
+											src="${images}/HP Envy 13au2.jpg"
+											class="img-responsive img-fluid" alt=""></a>
+									</div>
+									<div class="thumb-content">
 										<h4>${product.name}</h4>
 										<p class="item-price">
 											<strike><i class="fa fa-inr"></i> 67972.00</strike> <span>
@@ -149,18 +150,19 @@
 												</c:otherwise>
 											</c:choose>
 										</security:authorize>
-									</c:forEach>
-								</div>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="${images}/HP Pavilion 1.jpg"
-										class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<c:forEach items="${products}" var="product" begin="2" end="2">
+								<c:forEach items="${products}" var="product" begin="2" end="2">
+									<div class="img-box">
+										<a href="${contextRoot}/show/${product.id}/product"> <img
+											src="${images}/HP Pavilion 1.jpg"
+											class="img-responsive img-fluid" alt=""></a>
+									</div>
+									<div class="thumb-content">
 										<h4>HP Pavilion 13-AN0046TU</h4>
 										<p class="item-price">
 											<strike><i class="fa fa-inr"></i> 81930.00</strike> <span><i
@@ -204,18 +206,19 @@
 												</c:otherwise>
 											</c:choose>
 										</security:authorize>
-									</c:forEach>
-								</div>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="${images}/HP Envy 13au1.jpg"
-										class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<c:forEach items="${products}" var="product" begin="0" end="0">
+								<c:forEach items="${products}" var="product" begin="0" end="0">
+									<div class="img-box">
+										<a href="${contextRoot}/show/${product.id}/product"> <img
+											src="${images}/HP Envy 13au1.jpg"
+											class="img-responsive img-fluid" alt=""></a>
+									</div>
+									<div class="thumb-content">
 										<h4>${product.name}</h4>
 										<p class="item-price">
 											<strike><i class="fa fa-inr"></i> 83496.00</strike> <span><i
@@ -258,18 +261,19 @@
 												</c:otherwise>
 											</c:choose>
 										</security:authorize>
-									</c:forEach>
-								</div>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="${images}/K7 Total 1User 1Year.jpg"
-										class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<c:forEach items="${products}" var="product" begin="3" end="3">
+								<c:forEach items="${products}" var="product" begin="3" end="3">
+									<div class="img-box">
+										<a href="${contextRoot}/show/${product.id}/product"> <img
+											src="${images}/K7 Total 1User 1Year.jpg"
+											class="img-responsive img-fluid" alt=""></a>
+									</div>
+									<div class="thumb-content">
 										<h4>${product.name}</h4>
 										<p class="item-price">
 											<strike><i class="fa fa-inr"></i> 1299.00</strike> <span><i
@@ -313,8 +317,8 @@
 												</c:otherwise>
 											</c:choose>
 										</security:authorize>
-									</c:forEach>
-								</div>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>
@@ -323,12 +327,13 @@
 					<div class="row">
 						<div class="col-sm-3">
 							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="${images}/HP Pavilion 2.jpg"
-										class="img-responsive img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<c:forEach items="${products}" var="product" begin="2" end="2">
+								<c:forEach items="${products}" var="product" begin="2" end="2">
+									<div class="img-box">
+										<a href="${contextRoot}/show/${product.id}/product"> <img
+											src="${images}/HP Pavilion 2.jpg"
+											class="img-responsive img-fluid" alt=""></a>
+									</div>
+									<div class="thumb-content">
 										<h4>${product.name}</h4>
 										<p class="item-price">
 											<strike><i class="fa fa-inr"></i> 81250.00</strike> <span><i
@@ -372,8 +377,8 @@
 												</c:otherwise>
 											</c:choose>
 										</security:authorize>
-									</c:forEach>
-								</div>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
 					</div>

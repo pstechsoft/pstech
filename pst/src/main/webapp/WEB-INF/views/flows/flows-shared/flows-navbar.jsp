@@ -59,6 +59,9 @@
 											${userModel.cart.grandTotal}
 										</a>
 										<div class="dropdown-divider" role="separator"></div>
+										<a class="dropdown-item" href="${contextRoot}/myorders"><i
+											class="fa fa-shopping-bag"></i> My Order</a>
+										<div class="dropdown-divider" role="separator"></div>
 									</security:authorize>
 									<a class="dropdown-item" href="${contextRoot}/perform-logout"><i
 										class="fa fa-sign-out"></i> Logout</a>

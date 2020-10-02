@@ -27,7 +27,13 @@
 
 <script>
 	window.menu = '${title}';
-	window.contextRoot = '${contextRoot}'
+	window.contextRoot = '${contextRoot}';
+	/* function showLoader() {
+		$(".loader").fadeIn("slow");
+	}
+	function hideLoader() {
+		$(".loader").fadeOut("slow");
+	} */
 </script>
 
 <!-- Bootstrap Core CSS -->
@@ -50,6 +56,24 @@
 </head>
 
 <body>
+	<script> 
+        document.onreadystatechange = function() { 
+            if (document.readyState !== "complete") { 
+                document.querySelector( 
+                  "body").style.visibility = "hidden"; 
+                document.querySelector( 
+                  "#loader").style.visibility = "visible"; 
+            } else { 
+                document.querySelector( 
+                  "#loader").style.display = "none"; 
+                document.querySelector( 
+                  "body").style.visibility = "visible"; 
+            } 
+        }; 
+    </script>
+	<div id="loader">
+		<span></span> <span></span> <span></span> <span></span>
+	</div>
 
 	<!-- Nevigation -->
 	<%@include file="./shared/navbar.jsp"%>
@@ -67,14 +91,14 @@
 	<c:if test="${userClickManageProducts==true}">
 		<%@include file="manageProducts.jsp"%>
 	</c:if>
-	
+
 	<!-- Loads only when user clicks Show Cart -->
 	<c:if test="${userClickShowCart==true}">
 		<%@include file="cart.jsp"%>
 	</c:if>
 
-	<c:if test="${userClickMyAccount == true }"><%@include
-			file="myaccount.jsp"%>
+	<c:if test="${userClickMyOrders == true }"><%@include
+			file="myorder.jsp"%>
 	</c:if>
 
 
@@ -91,19 +115,24 @@
 	<c:if test="${userClickShowProduct == true }"><%@include
 			file="singleProduct.jsp"%>
 	</c:if>
-	
+
+	<!-- payform page -->
+	<c:if test="${userClickPayform == true }"><%@include
+			file="email.jsp"%>
+	</c:if>
+
 	<!-- payuform page -->
 	<c:if test="${userClickPayuform == true }"><%@include
 			file="payuform.jsp"%>
 	</c:if>
-	
+
 
 	<!-- Footer -->
 	<%@include file="./shared/footer.jsp"%>
 
 	<!-- Jquery -->
 	<script src="${js}/jquery.js"></script>
-	
+
 	<!-- Jquery Validator-->
 	<script src="${js}/jquery.validate.js"></script>
 
@@ -113,16 +142,16 @@
 
 	<!-- Bootstrap Core -->
 	<script src="${js}/bootstrap.min.js"></script>
-	
+
 	<!-- Data Table -->
 	<script src="${js}/jquery.dataTables.js"></script>
-	
+
 	<!-- Data Table Bootstrap Script-->
 	<script src="${js}/dataTables.bootstrap4.js"></script>
 
 	<!-- Bootbox-->
 	<script src="${js}/bootbox.min.js"></script>
-	
+
 	<!-- self coded js -->
 	<script src="${js}/myapp.js"></script>
 

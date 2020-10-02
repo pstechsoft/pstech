@@ -64,6 +64,16 @@
 								<sf:errors path="unitPrice" cssClass="form-text" element="em" />
 							</div>
 						</div>
+						
+						<div class="form-group row">
+							<label class="control-label col-lg-4" for="tax"><b>Enter
+									Tax: </b></label>
+							<div class="col-lg-8">
+								<sf:input type="number" path="tax" id="tax"
+									placeholder="Tax Price In &#8377;" class="form-control" />
+								<sf:errors path="tax" cssClass="form-text" element="em" />
+							</div>
+						</div>
 
 						<div class="form-group row">
 							<label class="control-label col-lg-4" for="quantity"><b>Quantity
@@ -140,6 +150,7 @@
 							<th>Brand</th>
 							<th>Quantity</th>
 							<th>Unit Price</th>
+							<th>Tax</th>
 							<th>Active</th>
 							<th>Edit</th>
 						</tr>
@@ -153,6 +164,7 @@
 							<th>Brand</th>
 							<th>Quantity</th>
 							<th>Unit Price</th>
+							<th>Tax</th>
 							<th>Active</th>
 							<th>Edit</th>
 						</tr>
