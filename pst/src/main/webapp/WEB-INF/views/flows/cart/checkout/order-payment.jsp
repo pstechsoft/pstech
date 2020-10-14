@@ -15,6 +15,7 @@
 							<hr />
 							<h6>Quantity -${cartLine.productCount}</h6>
 							<h6>Buying Price - &#8377; ${cartLine.buyingPrice}/-</h6>
+							<h6>Tax - &#8377; ${cartLine.tax}/-</h6>
 						</div>
 						<hr />
 						<div class="text-right">
@@ -42,7 +43,8 @@
 
 								<div>
 									<h6>${cartLine.product.name}</h6>
-									<h6 class="text-right">&#8377; ${cartLine.total}/-</h6>
+									<h6 class="text-right">Sub Total :&#8377; ${cartLine.subTotal}/-</h6>
+									<h6 class="text-right">Tax :&#8377; ${cartLine.tax}/-</h6>
 									<hr />
 
 
@@ -52,17 +54,17 @@
 						</c:forEach>
 						<table class="table table-condensed">
 							<tbody>
-								<tr>
+								<%-- <tr>
 									<td colspan="2" class="hidden-xs"></td>
 									<td class="hidden-xs text-center">Sub Total
 									<td class="text-right">&#8377;
-										${checkoutModel.checkoutTotal}/-</td>
+										${cartLine.buyingPrice}/-</td>
 								</tr>
 								<tr>
 									<td colspan="2" class="hidden-xs"></td>
 									<td class="hidden-xs text-center">Tax
-									<td class="text-right">&#8377; ${checkoutModel.tax}/-</td>
-								</tr>
+									<td class="text-right">&#8377; ${cartLine.tax}/-</td>
+								</tr> --%>
 								<tr>
 									<td colspan="2" class="hidden-xs"></td>
 									<td class="hidden-xs text-center"><strong>Grand

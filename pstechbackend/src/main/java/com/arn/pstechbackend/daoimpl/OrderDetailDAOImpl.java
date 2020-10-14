@@ -18,12 +18,17 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<OrderDetail> listOrderDetails() {
-		return sessionFactory.getCurrentSession().createQuery("FROM OrderDetail" , OrderDetail.class).getResultList();
+	public List<OrderDetail> list() {
+		return sessionFactory.getCurrentSession()
+				.createQuery("FROM OrderDetail", OrderDetail.class)
+						.getResultList();
 	}
+
 
 	@Override
 	public OrderDetail get(int id) {
-		return sessionFactory.getCurrentSession().get(OrderDetail.class,Integer.valueOf(id));	
+		
+			return sessionFactory.getCurrentSession().get(OrderDetail.class, Integer.valueOf(id));
+		
 	}
 }

@@ -30,6 +30,28 @@ public class OrderItem implements Serializable {
 	private Product product;
 	
 	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+		
+	private double tax;
+
+	public double getTax() {
+		return tax;
+	}
+
+	public void setTax(double tax) {
+		this.tax = tax;
+	}
+
+	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private OrderDetail orderDetail;
 
@@ -48,6 +70,7 @@ public class OrderItem implements Serializable {
 	private int productCount;
 	
 	private double total;
+	private double subTotal;
 
 	
 	public int getId() {
@@ -89,6 +112,14 @@ public class OrderItem implements Serializable {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	public double getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(double subTotal) {
+		this.subTotal = subTotal;
 	}
 		
 }

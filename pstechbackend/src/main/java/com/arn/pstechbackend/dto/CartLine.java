@@ -28,7 +28,10 @@ public class CartLine implements Serializable {
 	private int cartId;	
 	@Column(name = "product_count")
 	private int productCount;
+	@Column(name = "tax")
+	private double tax;
 	private double total;
+	private double subTotal;
 	@Column(name = "buying_price")
 	private double buyingPrice;
 	
@@ -57,6 +60,12 @@ public class CartLine implements Serializable {
 	public int getProductCount() {
 		return productCount;
 	}
+	public double getTax() {
+		return tax;
+	}
+	public void setTax(double tax) {
+		this.tax = tax;
+	}
 	public void setProductCount(int productCount) {
 		this.productCount = productCount;
 	}
@@ -65,6 +74,12 @@ public class CartLine implements Serializable {
 	}
 	public void setTotal(double total) {
 		this.total = total;
+	}
+	public double getSubTotal() {
+		return subTotal;
+	}
+	public void setSubTotal(double subTotal) {
+		this.subTotal = subTotal;
 	}
 	public double getBuyingPrice() {
 		return buyingPrice;

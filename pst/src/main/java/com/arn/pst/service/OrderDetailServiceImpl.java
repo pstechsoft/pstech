@@ -17,8 +17,8 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 	
 	@Override
 	@Transactional
-	public List<OrderDetail> listOrderDetails() {
-		return orderDetailDAO.listOrderDetails();
+	public List<OrderDetail> list() {
+		return orderDetailDAO.list();
 	}
 
 	@Override

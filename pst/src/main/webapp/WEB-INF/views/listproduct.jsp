@@ -75,7 +75,7 @@
 
 					<script>
 				const searchFun= () =>{
-					let filter = document.getElementById('myinput').value.toUpperCase();
+					let filter = document.getElementById('searchInput').value.toUpperCase();
 					
 					let productListTable = document.getElementById('productListTable');
 					

@@ -6,6 +6,6 @@ import com.arn.pstechbackend.dto.OrderDetail;
 
 public interface OrderDetailDAO {
 	
-	public List<OrderDetail> listOrderDetails();
+	public List<OrderDetail> list();
 	public OrderDetail get(int id);
 }

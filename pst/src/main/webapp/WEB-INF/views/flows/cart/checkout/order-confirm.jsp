@@ -4,9 +4,9 @@
 <script>
 	function pageRedirect() {
 		window.location
-				.replace("${contextRoot}/email/show?&firstname=${checkoutModel.user.firstName}&email=${checkoutModel.user.email}&subject=Your order Info&message=Hi ${checkoutModel.user.firstName}, Thanks for purchasing your order <c:forEach items="${checkoutModel.cartLines}" var="cartLine">${cartLine.product.name},</c:forEach> with order id is ${orderDetail.id}");
+				.replace("${contextRoot}/email/show?&firstname=${checkoutModel.user.firstName}&email=${checkoutModel.user.email}&subject=Your order Info&message=Hi ${checkoutModel.user.firstName}, Thanks for purchasing your order <c:forEach items="${checkoutModel.cartLines}" var="cartLine">${cartLine.product.name},</c:forEach> with order id is ${orderDetail.id}.");
 	}
-	setTimeout("pageRedirect()", 5000);
+	setTimeout("pageRedirect()", 1000);
 </script>
 </head>
 <body>
@@ -101,6 +101,7 @@
 											<td><strong>Item</strong></td>
 											<td class="text-center"><strong>Price</strong></td>
 											<td class="text-center"><strong>Quantity</strong></td>
+											<td class="text-center"><strong>Tax</strong></td>
 											<td class="text-right"><strong>Total</strong></td>
 										</tr>
 									</thead>
@@ -112,25 +113,26 @@
 												<td class="text-center">&#8377;
 													${orderItem.buyingPrice}/-</td>
 												<td class="text-center">${orderItem.productCount}</td>
+												<td class="text-center">&#8377; ${orderItem.tax}/-</td>
 												<td class="text-right">&#8377; ${orderItem.total}/-</td>
 											</tr>
 
 										</c:forEach>
 									</tbody>
 									<tfoot>
-										<tr>
-											<td colspan="2" class="hidden-xs"></td>
+										<%-- <tr>
+											<td colspan="3" class="hidden-xs"></td>
 											<td class="hidden-xs text-center">Sub Total
 											<td class="text-right">&#8377;
 												${checkoutModel.checkoutTotal}/-</td>
-										</tr>
-										<tr>
-											<td colspan="2" class="hidden-xs"></td>
+										</tr> --%>
+										<%-- <tr>
+											<td colspan="3" class="hidden-xs"></td>
 											<td class="hidden-xs text-center">Tax
 											<td class="text-right">&#8377; ${checkoutModel.tax}/-</td>
-										</tr>
+										</tr> --%>
 										<tr>
-											<td colspan="2" class="hidden-xs"></td>
+											<td colspan="3" class="hidden-xs"></td>
 											<td class="hidden-xs text-center"><strong>Grand
 													Total</strong>
 											<td class="text-right"><strong>&#8377;
@@ -144,7 +146,8 @@
 				</div>
 			</div>
 		</div>
-		<%-- <div class="text-center">
+	</div>
+	<%-- <div class="text-center">
 		<a href="${contextRoot}/show/all/products"
 			class="btn btn-lg btn-warning">Continue Shopping</a>
 	</div> --%>

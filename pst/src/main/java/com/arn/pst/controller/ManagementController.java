@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.arn.pst.Validator.ProductValidator;
 import com.arn.pst.util.FileUploadUtility;
 import com.arn.pstechbackend.dao.CategoryDAO;
+import com.arn.pstechbackend.dao.OrderItemDAO;
 import com.arn.pstechbackend.dao.ProductDAO;
 import com.arn.pstechbackend.dto.Category;
 import com.arn.pstechbackend.dto.Product;
@@ -35,6 +36,9 @@ public class ManagementController {
 
 	@Autowired
 	private ProductDAO productDAO;
+	
+	@Autowired
+	private OrderItemDAO orderItemDAO;
 
 	private static final Logger logger = LoggerFactory.getLogger(ManagementController.class);
 
@@ -164,6 +168,15 @@ public class ManagementController {
 	@ModelAttribute("category")
 	public Category getCategory() {
 		return new Category();
+	}
+	
+	@RequestMapping(value = { "/allorders" })
+	public ModelAndView allorders() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "All Order");	
+		mv.addObject("orderItems", orderItemDAO.list());
+		mv.addObject("userClickMyOrders", true);
+		return mv;
 	}
 
 }

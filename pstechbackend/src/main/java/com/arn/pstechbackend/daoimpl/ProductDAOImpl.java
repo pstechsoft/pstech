@@ -112,8 +112,4 @@ public class ProductDAOImpl implements ProductDAO {
 				.setMaxResults(count).getResultList();
 	}
 
-	/*@Override
-	public Product getTax(double tax) {
-		return sessionFactory.getCurrentSession().get(Product.class , tax);
-	}*/
 }

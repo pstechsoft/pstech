@@ -1,7 +1,72 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<c:if test="${not empty message}">
 
-<c:set var="availableCount" value="${userModel.cart.cartLines}" />
+	<div class="alert alert-info">
+		<h3 class="text-center">${message}</h3>
+	</div>
+
+</c:if>
+<c:choose>
+	<c:when test="${not empty cartLines}">
+<div class="container-fluid">
+	<table id="cart" class="table table-hover table-condensed">
+		<thead>
+			<tr>
+				<th style="width: 10%">OrderNo</th>
+				<th style="width: 50%">Product</th>
+				<th style="width: 10%">Price</th>
+				<th style="width: 8%">Quantity</th>
+				<th style="width: 10%" class="text-center">Tax</th>
+				<th style="width: 12%" class="text-center">Subtotal</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${orderItems}" var="orderItem">
+				<tr>
+					<td>
+						<div class="col-sm-2 hidden-xs">
+							<h5 class="nomargin">${orderItem.orderDetail.id}</h5>
+						</div>
+					</td>
+					<td>
+						<div class="row">
+							<div class="col-sm-2 hidden-xs">
+								<img src="${images}/${orderItem.product.code}.jpg"
+									alt="${orderItem.product.name}" class="img-responsive cartImg" />
+							</div>
+							<div class="col-sm-10">
+								<h5 class="nomargin">${orderItem.product.name}</h5>
+								<p>Brand : ${orderItem.product.brand}</p>
+								<p>Order Date : ${orderItem.orderDetail.orderDate}</p>
+								<%-- <p>Description : ${cartLine.product.description}</p> --%>
+							</div>
+						</div>
+					</td>
+					<td data-th="Price">&#8377; ${orderItem.buyingPrice} /-</td>
+					<td data-th="Quantity">${orderItem.productCount}</td>
+					<td data-th="Tax" class="text-center">&#8377;
+						${orderItem.product.tax} /-</td>
+					<td data-th="Subtotal" class="text-center">&#8377;
+						${orderItem.total} /-</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+</div>
+</c:when>
+
+	<c:otherwise>
+
+		<div class="jumbotron">
+
+			<h3 class="text-center">YOU DONT HAVE ANY ORDER!</h3>
+
+		</div>
+
+	</c:otherwise>
+</c:choose>
+<%-- <c:set var="availableCount" value="${userModel.cart.cartLines}" />
 <!-- <div class="container"> -->
 <c:if test="${not empty message}">
 
@@ -83,7 +148,7 @@
 					<td class="hidden-xs text-center"><strong>Total
 							&#8377; ${userModel.cart.grandTotal}/-</strong></td>
 					<td></td>
-					<%-- <c:choose>
+					<c:choose>
 						<c:when test="${availableCount != 0}">
 							<td><a href="${contextRoot}/cart/validate"
 								class="btn btn-success btn-block">Checkout <i
@@ -95,7 +160,7 @@
 										<span class="fa fa-angle-right"></span>
 								</strike></a></td>
 						</c:otherwise>
-					</c:choose> --%>
+					</c:choose>
 				</tr>
 			</tfoot>
 		</table>
@@ -110,5 +175,5 @@
 		</div>
 
 	</c:otherwise>
-</c:choose>
+</c:choose> --%>
 <!-- </div> -->

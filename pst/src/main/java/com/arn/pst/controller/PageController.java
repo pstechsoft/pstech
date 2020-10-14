@@ -2,6 +2,7 @@ package com.arn.pst.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.arn.pst.exception.ProductNotFoundException;
-import com.arn.pst.service.CartService;
+import com.arn.pst.model.UserModel;
+/*import com.arn.pst.service.OrderItemService;*/
 import com.arn.pstechbackend.dao.CategoryDAO;
+import com.arn.pstechbackend.dao.OrderItemDAO;
 import com.arn.pstechbackend.dao.ProductDAO;
 import com.arn.pstechbackend.dto.Category;
 import com.arn.pstechbackend.dto.Product;
@@ -32,9 +35,12 @@ public class PageController {
 	@Autowired
 	private ProductDAO productDAO;
 	@Autowired
-	private CartService cartService;
-
-
+	private OrderItemDAO orderItemDAO;
+	/*@Autowired
+	private OrderItemService orderItemService;*/
+	@Autowired
+	private HttpSession session;
+	
 	@RequestMapping(value = { "/", "/home", "/index" })
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("page");
@@ -103,6 +109,16 @@ public class PageController {
 		mv.addObject("userClickCategoryProducts", true);
 		return mv;
 	}
+	
+
+	@RequestMapping(value = { "/myorders" })
+	public ModelAndView myorders() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "My Order");
+		mv.addObject("orderItems", orderItemDAO.list(((UserModel) session.getAttribute("userModel")).getId()));
+		mv.addObject("userClickMyOrders", true);
+		return mv;
+	}
 		
 	// Fetching a single product
 	@RequestMapping(value = "/show/{id}/product")
@@ -126,26 +142,6 @@ public class PageController {
 
 	}
 
-	@RequestMapping(value = { "/myorders" })
-	public ModelAndView myorders(@RequestParam(name = "result", required = false) String result) {
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "My Order");
-		mv.addObject("userClickMyOrders", true);
-		mv.addObject("cartLines", cartService.getCartLines());
-		if (result != null) {
-			switch (result) {
-			case "deleted":
-				mv.addObject("message", "Your order has been cancelled successfully !");
-				break;
-			}
-		} else {
-			String response = cartService.validateCartLine();
-			if (response.equals("result=modified")) {
-				mv.addObject("message", "One or more items inside cart has been modified!");
-			}
-		}
-		return mv;
-	}
 
 	 //Register Page 
 	@RequestMapping(value = { "/register" })

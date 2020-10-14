@@ -164,7 +164,7 @@
 									<tr>
 										<td colspan="2" class="hidden-xs"></td>
 										<td class="hidden-xs text-center">Tax
-										<td class="text-right">&#8377; ${product.tax}/-</td>
+										<td class="text-right">&#8377; ${checkoutModel.tax}/-</td>
 									</tr>
 									<tr>
 										<td colspan="2" class="hidden-xs"></td>

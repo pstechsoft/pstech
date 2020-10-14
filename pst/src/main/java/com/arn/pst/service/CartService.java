@@ -54,7 +54,9 @@ public class CartService {
 		// update the cartLine
 		cartLine.setProductCount(count);
 		cartLine.setBuyingPrice(product.getUnitPrice());
-		cartLine.setTotal((product.getUnitPrice() * count));
+		cartLine.setTax(product.getTax() * count);
+		cartLine.setTotal((product.getUnitPrice() * count) + cartLine.getTax());
+		cartLine.setSubTotal((product.getUnitPrice() * count));
 		cartLineDAO.update(cartLine);
 
 		// update the cart
@@ -111,7 +113,9 @@ public class CartService {
 			cartLine.setProduct(product);
 			cartLine.setProductCount(1);
 			cartLine.setBuyingPrice(product.getUnitPrice());
-			cartLine.setTotal(product.getUnitPrice());
+			cartLine.setTax(cartLine.getProductCount() * product.getTax());
+			cartLine.setTotal(product.getUnitPrice() + cartLine.getTax());
+			cartLine.setSubTotal(product.getUnitPrice());
 			/*cartLine.setAvailable(true);*/
 
 			// insert a new cartLine

@@ -82,9 +82,9 @@
 							<div class="col-lg-8">
 								<label class="radio-inline"> <sf:radiobutton path="role"
 										value="USER" checked="checked" /> User
-								</label> <label class="radio-inline"> <sf:radiobutton
+								<%-- </label> <label class="radio-inline"> <sf:radiobutton
 										path="role" value="SUPPLIER" /> Supplier
-								</label>
+								</label> --%>
 							</div>
 						</div>
 

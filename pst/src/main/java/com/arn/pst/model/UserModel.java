@@ -41,6 +41,7 @@ public class UserModel implements Serializable{
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -53,5 +54,4 @@ public class UserModel implements Serializable{
 				+ cart + "]";
 	}
 	
-
 }

@@ -65,8 +65,8 @@ public class CheckoutHandler {
 		    //String orderId ="PST-2020-"+ii;	
 			checkoutModel.setCartLines(cartLines);
 			checkoutModel.setCheckoutTotal(checkoutTotal);
-			checkoutModel.setTax((checkoutTotal*9)/100);
-			checkoutModel.setGrandTotal((int) (checkoutTotal+checkoutModel.getTax()));
+			//checkoutModel.setTax((checkoutTotal*9)/100);
+			checkoutModel.setGrandTotal((int) (checkoutTotal));
 		}
 
 		return checkoutModel;
@@ -156,11 +156,13 @@ public class CheckoutHandler {
 		for (CartLine cartLine : cartLines) {
 
 			orderItem = new OrderItem();
-
+			
+			orderItem.setUser(checkoutModel.getUser());
 			orderItem.setBuyingPrice(cartLine.getBuyingPrice());
 			orderItem.setProduct(cartLine.getProduct());
 			orderItem.setProductCount(cartLine.getProductCount());
 			orderItem.setTotal(cartLine.getTotal());
+			orderItem.setTax(cartLine.getTax());
 
 			orderItem.setOrderDetail(orderDetail);
 			orderDetail.getOrderItems().add(orderItem);

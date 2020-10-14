@@ -55,7 +55,7 @@ public class User implements Serializable {
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
-
+	
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	private Cart cart;
 
@@ -66,7 +66,8 @@ public class User implements Serializable {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-
+	
+	
 	/**
 	 * Setter and Getter for the field
 	 */

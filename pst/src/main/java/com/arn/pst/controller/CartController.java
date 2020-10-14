@@ -58,29 +58,7 @@ public class CartController {
 		return mv;
 	}
 
-	/*@RequestMapping(value = { "/myorders" })
-	public ModelAndView myorders(@RequestParam(name = "result", required = false) String result) {
-
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "My Order");
-		mv.addObject("userClickMyOrders", true);
-		mv.addObject("cartLines", cartService.getCartLines());
 	
-		if (result != null) {
-			switch (result) {
-			case "deleted":
-				mv.addObject("message", "Your order has been cancelled successfully !");
-				break;
-			}
-		} else {
-			String response = cartService.validateCartLine();
-			if (response.equals("result=modified")) {
-				mv.addObject("message", "One or more items inside cart has been modified!");
-			}
-		}
-		return mv;
-	}*/
-
 	@RequestMapping("/{cartLineId}/update")
 	public String udpateCart(@PathVariable int cartLineId, @RequestParam int count) {
 		String response = cartService.manageCartLine(cartLineId, count);
